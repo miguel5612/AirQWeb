@@ -3,7 +3,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<div class="container">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card-group">
@@ -26,6 +26,9 @@
                     </span>
                   </div>
                   <asp:TextBox ID="txtPassword" cssClass="form-control" type="password" placeholder="Contraseña" runat="server"/>
+                    <br />
+                    <br />
+                    <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
                 </div>
                   <br />
                 <div class="row">
@@ -51,5 +54,5 @@
         </div>
       </div>
     </div>
-   
+    <asp:SqlDataSource ID="dsUsers" runat="server" ConnectionString="<%$ ConnectionStrings:AirQConnectionString %>" ProviderName="<%$ ConnectionStrings:AirQConnectionString.ProviderName %>" SelectCommand="SELECT * FROM Users"></asp:SqlDataSource>
 </asp:Content>
