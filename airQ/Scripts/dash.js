@@ -7,8 +7,8 @@ function drawCharts() {
     chart3();
     chart4();
     chart5();
-
 }
+
 function chart1() {
     var data = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
