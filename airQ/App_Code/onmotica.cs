@@ -19,6 +19,7 @@ using System.IO;
 
 namespace airQ.App_Code
 {
+    //onmotica is an Miguel Califa creation :) 2018 C
     public class onmotica
     {
         public static void isLogged(System.Web.SessionState.HttpSessionState Session, HttpResponse Response)
