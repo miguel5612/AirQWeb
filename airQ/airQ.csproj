@@ -215,6 +215,7 @@
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="login.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="registerDevice.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\dash.js" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="registerDevice.aspx.cs">
+      <DependentUpon>registerDevice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="registerDevice.aspx.designer.cs">
+      <DependentUpon>registerDevice.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

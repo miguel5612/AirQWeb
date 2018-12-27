@@ -11,5 +11,32 @@ namespace airQ {
     
     
     public partial class dashboard1 {
+        
+        /// <summary>
+        /// dayReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button dayReport;
+        
+        /// <summary>
+        /// weekReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button weekReport;
+        
+        /// <summary>
+        /// monthReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button monthReport;
     }
 }

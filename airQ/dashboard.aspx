@@ -12,10 +12,10 @@
             </div>
         </div>
         <div class="col-sm-4 py-2">
-            <div class="card h-100 text-white bg-danger">
+            <div class="card h-100 border-primary">
                 <div class="card-body">
                     <h3>Presion atmosferica</h3>
-                    <div id="chart-divPresionAtmosferica" style="width: 400px; height: 120px;"></div>
+                    <div id="chart-divPresionAtmosferica" style="margin-left:10rem; width: 400px; height: 120px;"></div>
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
@@ -24,7 +24,7 @@
             <div class="card h-100 border-primary">
                 <div class="card-body">
                     <h3>Alcoholes</h3>
-                    <div id="chart-divAlcoholes" style="width: 400px; height: 120px;"></div>
+                    <div id="chart-divAlcoholes" style="margin-left:10rem; width: 400px; height: 120px;"></div>
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
@@ -39,17 +39,17 @@
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
                <h3>Gas Metano</h3>
-                    <div id="chart-divGasMetano" style="width: 400px; height: 120px;"></div>
+                    <div id="chart-divGasMetano" style="margin-left:10rem; width: 400px; height: 120px;"></div>
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
             </div>
         </div>
         <div class="col-sm-4 py-2">
-            <div class="card text-white bg-primary">
+            <div class="card bg-primary">
                 <div class="card-body">
                      <h3>Reportes</h3>
-                    <asp:Button Text="Descargar reporte diario" runat="server" />
-                    <asp:Button Text="Descargar reporte semanal" runat="server" />
-                    <asp:Button Text="Descargar reporte mensual" runat="server" />
+                    <asp:Button Text="Descargar reporte diario" ID="dayReport" runat="server" />
+                    <asp:Button Text="Descargar reporte semanal" ID="weekReport" runat="server" />
+                    <asp:Button Text="Descargar reporte mensual" ID="monthReport" runat="server" />
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>

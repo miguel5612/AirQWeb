@@ -10,127 +10,123 @@ function drawCharts() {
 }
 
 function chart1() {
-    var data = google.visualization.arrayToDataTable([
+    var data1 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Temperatura', 80],
         ['Humedad', 55]
     ]);
 
-    var options = {
+    var options1 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart-divTemperaturaHumedad'));
+    var chart1 = new google.visualization.Gauge(document.getElementById('chart-divTemperaturaHumedad'));
 
-    chart.draw(data, options);
+    chart1.draw(data1, options1);
 
     setInterval(function () {
-        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data1.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        chart1.draw(data1, options1);
     }, 13000);
     setInterval(function () {
-        data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data1.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+        chart1.draw(data1, options1);
     }, 5000);
 }
 function chart2() {
-    var data = google.visualization.arrayToDataTable([
+    var data2 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Presion atmosferica', 80]
     ]);
 
-    var options = {
+    var options2 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart-divPresionAtmosferica'));
+    var chart2 = new google.visualization.Gauge(document.getElementById('chart-divPresionAtmosferica'));
 
-    chart.draw(data, options);
+    chart2.draw(data2, options2);
 
     setInterval(function () {
-        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data2.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        chart2.draw(data2, options2);
     }, 13000);
 }
 function chart3() {
-    var data = google.visualization.arrayToDataTable([
+    var data3 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Alcoholes', 80]
     ]);
 
-    var options = {
+    var options3 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart-divAlcoholes'));
+    var chart3 = new google.visualization.Gauge(document.getElementById('chart-divAlcoholes'));
 
-    chart.draw(data, options);
+    chart3.draw(data3, options3);
 
     setInterval(function () {
-        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data3.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        chart3.draw(data3, options3);
     }, 13000);
 }
 function chart4() {
-    var data = google.visualization.arrayToDataTable([
+    var data4 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['TVOC', 80],
         ['CO2', 55]
     ]);
 
-    var options = {
+    var options4 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart-divTVOCCO2'));
+    var chart4 = new google.visualization.Gauge(document.getElementById('chart-divTVOCCO2'));
 
-    chart.draw(data, options);
+    chart4.draw(data4, options4);
 
     setInterval(function () {
-        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data4.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        chart4.draw(data4, options4);
     }, 13000);
     setInterval(function () {
-        data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data4.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+        chart4.draw(data4, options4);
     }, 5000);
 }
 function chart5() {
-    var data = google.visualization.arrayToDataTable([
+    var data5 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Gas Metano', 80]
     ]);
 
-    var options = {
+    var options5 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-    var chart = new google.visualization.Gauge(document.getElementById('chart-divGasMetano'));
+    var chart5 = new google.visualization.Gauge(document.getElementById('chart-divGasMetano'));
 
-    chart.draw(data, options);
+    chart5.draw(data5, options5);
 
     setInterval(function () {
-        data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
+        data5.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        chart5.draw(data5, options5);
     }, 13000);
-    setInterval(function () {
-        data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-        chart.draw(data, options);
-    }, 5000);
 }
 

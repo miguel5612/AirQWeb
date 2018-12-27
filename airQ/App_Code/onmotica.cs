@@ -97,5 +97,30 @@ namespace airQ.App_Code
             myConn.Close();
             return scalar;
         }
-    }    
+        public static string convertD2IDate(DateTime datum)
+        {
+            return DateTime.Parse(datum.ToString()).ToString("yyyyMMdd");
+        }
+
+        public static string convertD2IDateTime(DateTime datum)
+        {
+            return DateTime.Parse(datum.ToString()).ToString("yyyyMMdd HH:mm:ss");
+        }
+
+        public static string convertD2PGDate(string datum)
+        {
+            return DateTime.Parse(datum).ToString("dd.MM.yyyy");
+        }
+
+        public static string convertD2PGDateTime(string datum)
+        {
+            return DateTime.Parse(datum).ToString("dd.MM.yyyy HH:mm:ss");
+        }
+
+        public static string convertG2IDate(string datum)
+        {
+            return DateTime.Parse(datum).ToString("yyyyMMdd");
+        }
+
+    }
 }
