@@ -40,6 +40,7 @@ namespace airQ
                 {
                     Session["UsrID"] = dr["IDUser"].ToString();
                     Session["UsrName"] = dr["UserName"].ToString();
+                    Response.Redirect("/dashboard");
                 }
             }
         }
