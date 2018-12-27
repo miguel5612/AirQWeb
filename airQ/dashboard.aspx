@@ -46,14 +46,10 @@
         <div class="col-sm-4 py-2">
             <div class="card text-white bg-primary">
                 <div class="card-body">
-                     <h3>Parametros de calibracion</h3>
-                    <asp:Label ID="lblTemp" runat="server" Text="Temperatura: "></asp:Label><asp:TextBox ID="txtTemperatura" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblHum" runat="server" Text="Humedad: "></asp:Label><asp:TextBox ID="txtHumedad" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblPres" runat="server" Text="Presion Atmosferica: "></asp:Label><asp:TextBox ID="txtPresionAtmos" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblAlcohol" runat="server" Text="Alcohol: "></asp:Label><asp:TextBox ID="txtAlcohol" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblCO2" runat="server" Text="CO2: "></asp:Label><asp:TextBox ID="txtCO2" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblTVOC" runat="server" Text="TVOC: "></asp:Label><asp:TextBox ID="txtTVOC" runat="server"></asp:TextBox>
-                    <asp:Label ID="lblMetano" runat="server" Text="Metano: "></asp:Label><asp:TextBox ID="txtMetano" runat="server"></asp:TextBox>
+                     <h3>Reportes</h3>
+                    <asp:Button Text="Descargar reporte diario" runat="server" />
+                    <asp:Button Text="Descargar reporte semanal" runat="server" />
+                    <asp:Button Text="Descargar reporte mensual" runat="server" />
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
