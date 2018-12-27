@@ -7,6 +7,6 @@
     <asp:Label ID="lblInTopic" runat="server" Text="Topico de entrada: "></asp:Label><asp:TextBox ID="txtInTopic" runat="server"></asp:TextBox>
     <asp:Label ID="lblOutTopic" runat="server" Text="Topico de salida: "></asp:Label><asp:TextBox ID="txtOutTopic" runat="server"></asp:TextBox>
     <br />
-    <asp:SqlDataSource ID="dsDevice" runat="server"></asp:SqlDataSource>
-    <asp:Button Text="Enviar formulario" ID="btnRegister" runat="server" />
+    <asp:SqlDataSource ID="dsDevice" runat="server" ConnectionString="<%$ ConnectionStrings:AirQConnectionString %>" SelectCommand="SELECT * FROM [devices]"></asp:SqlDataSource>
+    <asp:Button Text="Enviar formulario" ID="btnRegister" runat="server" OnClick="btnRegister_Click" />
 </asp:Content>
