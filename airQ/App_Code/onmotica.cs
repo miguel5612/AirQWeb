@@ -22,15 +22,29 @@ namespace airQ.App_Code
     //onmotica is an Miguel Califa creation :) 2018 C
     public class onmotica
     {
-        public static void isLogged(System.Web.SessionState.HttpSessionState Session, HttpResponse Response)
+        public static void isLogged(System.Web.SessionState.HttpSessionState Session, HttpResponse Response, String location)
         {
             if (Session["UsrID"] != null & Session["UsrName"] != null)
             {
-                if (Convert.ToInt32(Session["UsrID"]) > 0 & Session["UsrName"].ToString() != "")
+                if (Convert.ToInt32(Session["UsrID"]) > 0 & Session["UsrName"].ToString() != "" & location == "default" & location == "login")
                 {
                     Response.Redirect("/dashboard");
                 }
             }
+            else if(location!="login" & location!="default")
+            {
+                Response.Redirect("/login");
+            }
+        }
+        public static void executeSQL(string query)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AirQConnectionString"].ConnectionString);
+            myConn.Open();
+            cmd.CommandText = query;
+            cmd.Connection = myConn;
+            cmd.ExecuteNonQuery();
+            myConn.Close();
         }
         public static SqlDataReader fetchReader(string query)
         {

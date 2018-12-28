@@ -12,7 +12,7 @@ namespace airQ
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            onmotica.isLogged(Session, Response);
+            onmotica.isLogged(Session, Response,"default");
         }
     }
 }

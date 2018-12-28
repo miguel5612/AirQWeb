@@ -12,19 +12,24 @@ namespace airQ
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            onmotica.isLogged(Session, Response, "dashboard");
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            if (txtName.Text != null & txtInTopic != null & txtOutTopic != null)
+            if (txtName.Text != null & txtInTopic.Text != null & txtOutTopic.Text != null)
             {
-                String pSQL = "INSERT INTO devices ([deviceName], [deviceDateSubscription], [deviceActiv], [deviceUsrId], [deviceTyp], [inTopic], [outTopic]) VALUES ('@deviceName', '@deviceDateSubscription', 1,1, '@inTopic', ' @outTopic')";
-                pSQL = pSQL.Replace("@deviceName", txtName.Text);
-                pSQL = pSQL.Replace("@inTopic", txtInTopic.Text);
-                pSQL = pSQL.Replace("@outTopic", txtOutTopic.Text);
+                String pSQL = "INSERT INTO devices ([deviceName], [deviceDateSubscription], [deviceActiv], [deviceUsrId], [deviceTyp], [inTopic], [outTopic]) VALUES ('@deviceName', '@deviceDateSubscription', @deviceActiv, @deviceUsrId, @deviceTyp, '@inTopic', '@outTopic')";
+                pSQL = pSQL.Replace("@deviceName", txtName.Text.Trim());
+                pSQL = pSQL.Replace("@inTopic", txtInTopic.Text.Trim());
+                pSQL = pSQL.Replace("@outTopic", txtOutTopic.Text.Trim());
+                pSQL = pSQL.Replace("@deviceUsrId", Session["UsrID"].ToString());
+
+                pSQL = pSQL.Replace("@deviceActiv", "1");
+                pSQL = pSQL.Replace("@deviceTyp", "1");
+
                 pSQL = pSQL.Replace("@deviceDateSubscription", onmotica.convertD2IDateTime(DateTime.Now));
-                onmotica.fetchReader(pSQL);
+                onmotica.executeSQL(pSQL);
                 Response.Redirect("/dashboard");
             }
         }
