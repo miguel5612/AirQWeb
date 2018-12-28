@@ -3817,6 +3817,7 @@ tbody.collapse.in {
   position: relative;
   display: table;
   border-collapse: separate;
+    margin-left: 40px;
 }
 .input-group[class*="col-"] {
   float: none;
@@ -3883,6 +3884,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .input-group-btn,
 .input-group .form-control {
   display: table-cell;
+    top: -5px;
+    left: -29px;
 }
 .input-group-addon:not(:first-child):not(:last-child),
 .input-group-btn:not(:first-child):not(:last-child),

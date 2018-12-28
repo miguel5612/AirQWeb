@@ -28,13 +28,13 @@ function chart1() {
     chart1.draw(data1, options1);
 
     setInterval(function () {
-        data1.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-        chart1.draw(data1, options1);
-    }, 13000);
-    setInterval(function () {
-        data1.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+        data1.setValue(0, 1, document.getElementById("txtData1").value);
         chart1.draw(data1, options1);
     }, 5000);
+    setInterval(function () {
+        data1.setValue(1, 1, document.getElementById("txtData2").value);
+        chart1.draw(data1, options1);
+    }, 6000);
 }
 function chart2() {
     var data2 = google.visualization.arrayToDataTable([
@@ -54,9 +54,9 @@ function chart2() {
     chart2.draw(data2, options2);
 
     setInterval(function () {
-        data2.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        data2.setValue(0, 1, document.getElementById("txtData3").value);
         chart2.draw(data2, options2);
-    }, 13000);
+    }, 7000);
 }
 function chart3() {
     var data3 = google.visualization.arrayToDataTable([
@@ -76,9 +76,9 @@ function chart3() {
     chart3.draw(data3, options3);
 
     setInterval(function () {
-        data3.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        data3.setValue(0, 1, document.getElementById("txtData4").value);
         chart3.draw(data3, options3);
-    }, 13000);
+    }, 8000);
 }
 function chart4() {
     var data4 = google.visualization.arrayToDataTable([
@@ -99,13 +99,12 @@ function chart4() {
     chart4.draw(data4, options4);
 
     setInterval(function () {
-        data4.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        data4.setValue(0, 1, document.getElementById("txtData5").value);
         chart4.draw(data4, options4);
-    }, 13000);
-    setInterval(function () {
-        data4.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+    }, 9000); setInterval(function () {
+        data4.setValue(1, 1, document.getElementById("txtData6").value);
         chart4.draw(data4, options4);
-    }, 5000);
+    }, 9500);
 }
 function chart5() {
     var data5 = google.visualization.arrayToDataTable([
@@ -125,8 +124,8 @@ function chart5() {
     chart5.draw(data5, options5);
 
     setInterval(function () {
-        data5.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+        data5.setValue(0, 1, document.getElementById("txtData7").value);
         chart5.draw(data5, options5);
-    }, 13000);
+    }, 9800);
 }
 

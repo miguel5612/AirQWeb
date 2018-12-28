@@ -4,15 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using airQ.App_Code;
 
 namespace airQ
 {
-    public partial class dashboard1 : System.Web.UI.Page
+    public partial class editDevice : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            onmotica.isLogged(Session, Response,"dashboard");
+
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            //base.VerifyRenderingInServerForm(control);
         }
     }
 }

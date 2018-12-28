@@ -26,7 +26,7 @@ namespace airQ.App_Code
         {
             if (Session["UsrID"] != null & Session["UsrName"] != null)
             {
-                if (Convert.ToInt32(Session["UsrID"]) > 0 & Session["UsrName"].ToString() != "" & location == "default" & location == "login")
+                if (Convert.ToInt32(Session["UsrID"]) > 0 & Session["UsrName"].ToString() != "" & (location == "default" || location == "login"))
                 {
                     Response.Redirect("/dashboard");
                 }

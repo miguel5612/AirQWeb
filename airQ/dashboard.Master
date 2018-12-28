@@ -33,6 +33,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:HiddenField  ID="txtData1" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData2" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData3" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData4" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData5" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData6" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData7" runat="server"></asp:HiddenField>
          <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -45,20 +52,15 @@
                 </div>
                 <div class="navbar-collapse collapse">
                      <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/dashboard">Pagina prinicipal</a></li>
-                        <li><a runat="server" href="~/registerDevice">Registrar nuevo dispositivo</a></li>
+                        <li><a runat="server" href="~/dashboard">pagina prinicipal</a></li>
+                        <li><a runat="server" href="~/registerDevice">registrar nuevo dispositivo</a></li>
                         <li>
-                              <a runat="server" class="dropdown-toggle" data-toggle="dropdown">Dispositivos</a>
-                              <ul class="dropdown-menu">
-                                  <li><a href="#">Action</a></li>
-                                  <li><a href="#">Another action</a></li>
-                                  <li><a href="#">Something else here</a></li>
-                                  <li class="divider"></li>
-                                  <li class="nav-header">Nav header</li>
-                                  <li><a href="#">Separated link</a></li>
-                                  <li><a href="#">One more separated link</a></li>
-                            </ul>
+                              <a runat="server" class="dropdown-toggle" data-toggle="dropdown">dispositivos</a>
+                              <ul id="menu" runat="server" class="dropdown-menu">
+                              </ul>
                         </li>
+                         <li><a runat="server" href="~/editDevice">ver/editar dispositivos</a></li>
+                         <li><a runat="server" href="~/logout">cerrar sesion</a></li>
                     </ul>
                 </div>
             </div>
