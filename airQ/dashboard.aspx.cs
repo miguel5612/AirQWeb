@@ -60,6 +60,7 @@ namespace airQ
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
                 txtReceived.Text = ReceivedMessage;
+            Response.Redirect("/dashboard");
         }
     }
 }
