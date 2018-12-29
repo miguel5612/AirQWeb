@@ -60,6 +60,9 @@
             </div>
         </div>
     </div>
+            <div>
+                <asp:TextBox runat="server" ID="txtReceived"/>
+            </div>
             </ContentTemplate>
         </asp:UpdatePanel>
 </asp:Content>
