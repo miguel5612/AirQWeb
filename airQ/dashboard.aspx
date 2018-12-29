@@ -3,6 +3,9 @@
     <script src="Scripts/dash.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="smUP" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="upDash" runat="server">
+        <ContentTemplate>
     <div class="row">
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
@@ -55,4 +58,6 @@
             </div>
         </div>
     </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
 </asp:Content>

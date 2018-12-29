@@ -13,6 +13,24 @@ namespace airQ {
     public partial class dashboard1 {
         
         /// <summary>
+        /// smUP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager smUP;
+        
+        /// <summary>
+        /// upDash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel upDash;
+        
+        /// <summary>
         /// dayReport control.
         /// </summary>
         /// <remarks>

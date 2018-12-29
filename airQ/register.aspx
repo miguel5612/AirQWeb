@@ -30,8 +30,8 @@
                   <br />
                 <div class="row">
                   <div class="col-6" style="margin-left: 40px">
-                      <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
-                    <asp:Button ID="btnRegister" CssClass="btn btn-primary px-4" runat="server" Text="Iniciar sesion" />
+                      <asp:Label ID="lblError" runat="server" Text=""></asp:Label><br />
+                    <asp:Button ID="btnRegister" CssClass="btn btn-primary px-4" runat="server" OnClick="btnRegister_Click" Text="Registrarse" />
                   </div>
                   <div class="col-6 text-left">
                     <button class="btn btn-link px-0" type="button">Olvidaste tu clave?</button>

@@ -48,10 +48,12 @@ namespace airQ.App_Code
         }
         public static SqlDataReader fetchReader(string query)
         {
+            SqlCommand cmd = new SqlCommand();
             SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AirQConnectionString"].ConnectionString);
-            SqlCommand myCmd = new SqlCommand(query, myConn);
             myConn.Open();
-            return myCmd.ExecuteReader(CommandBehavior.CloseConnection);
+            SqlCommand myCmd = new SqlCommand(query, myConn);
+            SqlDataReader dr = myCmd.ExecuteReader(CommandBehavior.CloseConnection);
+            return dr;
         }
 
         public static DataSet fetchData(string query)

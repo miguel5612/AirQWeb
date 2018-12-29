@@ -28,11 +28,11 @@ function chart1() {
     chart1.draw(data1, options1);
 
     setInterval(function () {
-        data1.setValue(0, 1, document.getElementById("txtData1").value);
+        data1.setValue(0, 1, document.querySelectorAll("[ID*=txtData1]")[0].value);
         chart1.draw(data1, options1);
     }, 5000);
     setInterval(function () {
-        data1.setValue(1, 1, document.getElementById("txtData2").value);
+        data1.setValue(1, 1, document.querySelectorAll("[ID*=txtData2]")[0].value);
         chart1.draw(data1, options1);
     }, 6000);
 }
@@ -54,7 +54,7 @@ function chart2() {
     chart2.draw(data2, options2);
 
     setInterval(function () {
-        data2.setValue(0, 1, document.getElementById("txtData3").value);
+        data2.setValue(0, 1, document.querySelectorAll("[ID*=txtData3]")[0].value);
         chart2.draw(data2, options2);
     }, 7000);
 }
@@ -76,7 +76,7 @@ function chart3() {
     chart3.draw(data3, options3);
 
     setInterval(function () {
-        data3.setValue(0, 1, document.getElementById("txtData4").value);
+        data3.setValue(0, 1, document.querySelectorAll("[ID*=txtData4]")[0].value);
         chart3.draw(data3, options3);
     }, 8000);
 }
@@ -99,10 +99,10 @@ function chart4() {
     chart4.draw(data4, options4);
 
     setInterval(function () {
-        data4.setValue(0, 1, document.getElementById("txtData5").value);
+        data4.setValue(0, 1, document.querySelectorAll("[ID*=txtData5]")[0].value);
         chart4.draw(data4, options4);
     }, 9000); setInterval(function () {
-        data4.setValue(1, 1, document.getElementById("txtData6").value);
+        data4.setValue(1, 1, document.querySelectorAll("[ID*=txtData6]")[0].value);
         chart4.draw(data4, options4);
     }, 9500);
 }
@@ -124,7 +124,7 @@ function chart5() {
     chart5.draw(data5, options5);
 
     setInterval(function () {
-        data5.setValue(0, 1, document.getElementById("txtData7").value);
+        data5.setValue(0, 1, document.querySelectorAll("[ID*=txtData7]")[0].value);
         chart5.draw(data5, options5);
     }, 9800);
 }

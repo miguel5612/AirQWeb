@@ -16,14 +16,27 @@ namespace airQ
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
+            if (Request.QueryString["device"] != null)
+            {
+                if(int.Parse(Request.QueryString["device"].ToString())>0)
+                {
+                    Session["deviceID"] = Request.QueryString["device"].ToString();
+                }
+            }
 			if(!Page.IsPostBack)
 		    { 
 			    String pSQL = "SELECT * FROM devices WHERE deviceUsrId = " + Session["UsrID"].ToString();
 			    SqlDataReader dr = onmotica.fetchReader(pSQL);
+                bool firstFlag = true;
 			    while (dr.Read())
 			    {
 				    if (dr.HasRows)
 				    {
+                        if(firstFlag & Request.QueryString["device"] == null)
+                        {
+                            Session["deviceID"] = dr["deviceID"].ToString();
+                            firstFlag = false;
+                        }
 					    AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
 				    }
 			    }
@@ -64,21 +77,18 @@ namespace airQ
 			HtmlGenericControl li = new HtmlGenericControl("li");
 			menu.Controls.Add(li);
 
-			Button btnOpenDevice = new Button();
-			btnOpenDevice.Click += new EventHandler(button_Click);
-			btnOpenDevice.CssClass = btnID;
-			btnOpenDevice.Text = text;
-			btnOpenDevice.Width = 200;
+            HyperLink openDeviceLink = new HyperLink();
+			openDeviceLink.CssClass = btnID;
+            openDeviceLink.NavigateUrl = "~/dashboard?device=" + btnID;
+            openDeviceLink.Text = text;
+			openDeviceLink.Width = 200;
+            if (btnID == Session["deviceID"].ToString())
+            {
+                openDeviceLink.Style.Add("background-color", "darkred");
+                openDeviceLink.Style.Add("color", "white");
+            }
 			
-			li.Controls.Add(btnOpenDevice);         
+			li.Controls.Add(openDeviceLink);         
 		}
-		protected void button_Click(object sender, EventArgs e)
-		{
-			Button button = sender as Button;
-			var deviceID = Int32.Parse(button.ID);
-			Session["deviceID"] = deviceID;
-			// identify which button was clicked and perform necessary actions
-		}
-
-	}
+}
 }
