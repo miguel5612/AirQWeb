@@ -6,7 +6,9 @@
     <asp:ScriptManager ID="smUP" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="upDash" runat="server">
         <ContentTemplate>
-    <div class="row">
+    <div align="center"><caption><h2><ins><i><asp:Label ID="lblTittle" runat="server" Text=""></asp:Label></i></ins></h2></caption>
+	</div>
+    <div class="row" runat="server" id="divMeters">
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
                 <h3>Temperatura/Humedad</h3>

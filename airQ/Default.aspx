@@ -3,38 +3,37 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="http://www.asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+        <h1>AirQ</h1>
+        <p class="lead">AirQ es un componente para la medición de la calidad del aire, este dispositivo realiza las mediciones y observaciones puntuales de los parámetros meteorológicos utilizando los sensores adecuados para así poder establecer el comportamiento atmosférico.</p>
+        <p><a href="" class="btn btn-primary btn-lg">Mas informacion &raquo;</a></p>
     </div>
 
     <div class="row">
         <div class="col-md-4">
-            <h2>Getting started</h2>
+            <h2>Introduccion</h2>
             <p>
-                ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-            A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
+                El monitoreo y control de la contaminación atmosférica, es de suma relevancia debido a que la contaminación del aire ha aumentado las enfermedades y muertes por la contaminación del mismo, afectando la calidad de vida de los habitantes, a partir de ello surge la integración de tecnologías de plataformas electrónicas unidas a la ingeniería ambiental, a través de la programación y configuración que permita monitorear y supervisar las variables ambientales del aire.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>
-                NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-            </p>
-            <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
+                <a class="btn btn-default" href="https://github.com/Yercar18/Dronefenix">Mas informacion &raquo;</a>
             </p>
         </div>
         <div class="col-md-4">
-            <h2>Web Hosting</h2>
+            <h2>Equipos necesarios</h2>
             <p>
-                You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                Uno o varios modulos AirQ que puedes adquirir en els iguiente enlace.
             </p>
             <p>
-                <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
+                <a class="btn btn-default" href="">Compra tu AirQ ahora mismo!! &raquo;</a>
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Historia del software</h2>
+            <p>
+                Este software y hardware ha sido diseñado y ensamblado en colombia.
+            </p>
+            <p>
+                <a class="btn btn-default" href="">Mas informacion &raquo;</a>
             </p>
         </div>
     </div>

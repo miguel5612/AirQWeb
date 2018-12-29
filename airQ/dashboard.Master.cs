@@ -35,6 +35,7 @@ namespace airQ
                         if(firstFlag & Request.QueryString["device"] == null)
                         {
                             Session["deviceID"] = dr["deviceID"].ToString();
+                            Session["deviceName"] = dr["deviceName"].ToString();
                             firstFlag = false;
                         }
 					    AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
@@ -74,7 +75,9 @@ namespace airQ
 
         private void AddMenuItem(string text, string btnID)
 		{
-			HtmlGenericControl li = new HtmlGenericControl("li");
+            Session["deviceName" + btnID] = text;
+
+            HtmlGenericControl li = new HtmlGenericControl("li");
 			menu.Controls.Add(li);
 
             HyperLink openDeviceLink = new HyperLink();
@@ -85,7 +88,7 @@ namespace airQ
             if (btnID == Session["deviceID"].ToString())
             {
                 openDeviceLink.Style.Add("background-color", "darkred");
-                openDeviceLink.Style.Add("color", "white");
+                openDeviceLink.Style.Add("color", "white");                
             }
 			
 			li.Controls.Add(openDeviceLink);         

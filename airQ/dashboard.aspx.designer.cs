@@ -31,6 +31,24 @@ namespace airQ {
         protected global::System.Web.UI.UpdatePanel upDash;
         
         /// <summary>
+        /// lblTittle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTittle;
+        
+        /// <summary>
+        /// divMeters control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMeters;
+        
+        /// <summary>
         /// dayReport control.
         /// </summary>
         /// <remarks>

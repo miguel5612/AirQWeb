@@ -14,5 +14,18 @@ namespace airQ
         {
             onmotica.isLogged(Session, Response,"dashboard");
         }
+        void Page_LoadComplete(object sender, EventArgs e)
+        {
+            if (Session["deviceName"] != null & Session["deviceId"] != null)
+            {
+                lblTittle.Text = Session["deviceName" + Session["deviceId"].ToString()].ToString();
+                divMeters.Visible = true;
+            }
+            else
+            {
+                lblTittle.Text = "No tienes dispositivos registrados, haz clic en registrar nuevo dispositivo...";
+                divMeters.Visible = false;
+            }
+        }
     }
 }

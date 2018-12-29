@@ -11,8 +11,7 @@ namespace airQ
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session.Remove("UsrID");
-            Session.Remove("UserName");
+            Session.RemoveAll();
             Response.Redirect("/Default");
         }
     }
