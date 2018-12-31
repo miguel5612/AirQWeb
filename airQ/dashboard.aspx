@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/dashboard.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="airQ.dashboard1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="Scripts/dash.js"></script>
+    <script src="Scripts/jquery.signalR-2.4.0.min.js"></script>
+    <script src="signalr/hubs"></script>
+    <script src="Scripts/websocket.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="smUP" runat="server"></asp:ScriptManager>
@@ -60,7 +63,7 @@
             </div>
         </div>
     </div>
-            <div>
+            <div style="visibility:hidden">
                 <asp:TextBox runat="server" ID="txtReceived"/>
             </div>
             </ContentTemplate>

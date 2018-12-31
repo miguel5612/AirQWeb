@@ -11,17 +11,20 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using System.Text;
 
+//Libreria signalR
+using airQ.Hubs;
+using Microsoft.AspNet.SignalR;
+
 namespace airQ
 {
     public partial class dashboard1 : System.Web.UI.Page
     {
 
-        MqttClient client;
-        string clientId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             onmotica.isLogged(Session, Response,"dashboard");
+
         }
         void Page_LoadComplete(object sender, EventArgs e)
         {
@@ -36,6 +39,13 @@ namespace airQ
                 divMeters.Visible = false;
             }
 
+            mqttConection();
+        }
+        public void mqttConection()
+        {
+            MqttClient client;
+            string clientId;
+
             string BrokerAddress = "68.183.31.237";
 
             client = new MqttClient(BrokerAddress);
@@ -49,7 +59,7 @@ namespace airQ
 
             client.Connect(clientId);
 
-            client.Subscribe(new String[] { "test" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new String[] { "droneFenix/2/estacion1" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
 
         }
@@ -59,8 +69,11 @@ namespace airQ
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
-                txtReceived.Text = ReceivedMessage;
-            Response.Redirect("/dashboard");
+            txtReceived.Text = ReceivedMessage;
+            var context = GlobalHost.ConnectionManager.GetHubContext<dashboardHub>();
+
+            context.Clients.All.updateInfo(ReceivedMessage);
+            //Response.Redirect("/dashboard");
         }
     }
 }
