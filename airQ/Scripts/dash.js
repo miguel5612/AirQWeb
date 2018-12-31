@@ -1,36 +1,29 @@
-﻿google.charts.load('current', { 'packages': ['gauge'] });
+﻿var data1, options1,
+    data2, options2,
+    data3, options3,
+    data4, options4,
+    data5, options5,
+    temp = 0, hum = 0, presAt = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0;
+
+google.charts.load('current', { 'packages': ['gauge'] });
 google.charts.setOnLoadCallback(drawCharts);
 
-var data1, chart1, options1,
-data2, chart2, options2,
-data3, chart3, options3,
-data4, chart4, options4,
-data5, chart5, options5,
-temp = 0, hum = 0, presAt = 0, alcoholPPM = 0, TVOC= 0, CO2 = 0, Metano = 0;
 
-function drawCharts() {
-    chart1();
-    chart2();
-    chart3();
-    chart4();
-    chart5();
-}
-
-function chart1() {
-     data1 = google.visualization.arrayToDataTable([
+function gauge1() {
+    data1 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Temperatura', temp],
         ['Humedad', hum]
     ]);
 
-     options1 = {
+    options1 = {
         width: 400, height: 120,
         redFrom: 50, redTo: 100,
         yellowFrom: 40, yellowTo: 50,
         minorTicks: 5
     };
 
-     chart1 = new google.visualization.Gauge(document.getElementById('chart-divTemperaturaHumedad'));
+    chart1 = new google.visualization.Gauge(document.getElementById('chart-divTemperaturaHumedad'));
 
     chart1.draw(data1, options1);
 
@@ -45,20 +38,20 @@ function chart1() {
     }, 6000);
     */
 }
-function chart2() {
-     data2 = google.visualization.arrayToDataTable([
+function gauge2() {
+    data2 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Presion atmosferica', presAt]
     ]);
 
-     options2 = {
+    options2 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-     chart2 = new google.visualization.Gauge(document.getElementById('chart-divPresionAtmosferica'));
+    chart2 = new google.visualization.Gauge(document.getElementById('chart-divPresionAtmosferica'));
 
     chart2.draw(data2, options2);
     /*
@@ -68,20 +61,20 @@ function chart2() {
     }, 7000);
     */
 }
-function chart3() {
-     data3 = google.visualization.arrayToDataTable([
+function gauge3() {
+    data3 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-         ['Alcoholes', alcoholPPM]
+        ['Alcoholes', alcoholPPM]
     ]);
 
-     options3 = {
+    options3 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-     chart3 = new google.visualization.Gauge(document.getElementById('chart-divAlcoholes'));
+    chart3 = new google.visualization.Gauge(document.getElementById('chart-divAlcoholes'));
 
     chart3.draw(data3, options3);
     /*
@@ -91,21 +84,21 @@ function chart3() {
     }, 8000);
     */
 }
-function chart4() {
-     data4 = google.visualization.arrayToDataTable([
+function gauge4() {
+    data4 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['TVOC', TVOC],
         ['CO2', CO2]
     ]);
 
-     options4 = {
+    options4 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-     chart4 = new google.visualization.Gauge(document.getElementById('chart-divTVOCCO2'));
+    chart4 = new google.visualization.Gauge(document.getElementById('chart-divTVOCCO2'));
 
     chart4.draw(data4, options4);
     /*
@@ -118,20 +111,20 @@ function chart4() {
     }, 9500);
     */
 }
-function chart5() {
-     data5 = google.visualization.arrayToDataTable([
+function gauge5() {
+    data5 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
         ['Gas Metano', Metano]
     ]);
 
-     options5 = {
+    options5 = {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
         minorTicks: 5
     };
 
-     chart5 = new google.visualization.Gauge(document.getElementById('chart-divGasMetano'));
+    chart5 = new google.visualization.Gauge(document.getElementById('chart-divGasMetano'));
 
     chart5.draw(data5, options5);
     /*
@@ -142,3 +135,10 @@ function chart5() {
     */
 }
 
+function drawCharts() {
+    gauge1();
+    gauge2();
+    gauge3();
+    gauge4();
+    gauge5();
+}

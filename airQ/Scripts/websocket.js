@@ -1,14 +1,15 @@
-﻿$(function () {
+﻿var enc, mensaje, hub;
+
+
+$(function () {
     var hub = $.connection.dashboardHub;
-    var userName = "lol";
+    
 
     hub.client.updateInfo = function (data) {
         document.querySelectorAll("[ID*=txtReceived]")[0].value = data;
         temp, hum, presAt, alcoholPPM, TVOC, CO2, Metano;
         try {
-            var enc = new TextDecoder("utf-8");
-            var mensaje = JSON.parse(enc.decode(data.mensaje).toString())
-            var messageSplitted = [];
+            mensaje = JSON.parse(data);
             temp = mensaje.D1;
             hum = mensaje.D2;
             presAt = mensaje.D3;
@@ -25,5 +26,10 @@
         }
     }
 
+
     $.connection.hub.start();
+
+
+
+
 });
