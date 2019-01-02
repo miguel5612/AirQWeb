@@ -36,6 +36,7 @@ namespace airQ
                         {
                             Session["deviceID"] = dr["deviceID"].ToString();
                             Session["deviceName"] = dr["deviceName"].ToString();
+                            Session["inTopic"] = dr["inTopic"].ToString();
                             firstFlag = false;
                         }
 					    AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
@@ -46,7 +47,7 @@ namespace airQ
             {
                 if (Int32.Parse(Session["deviceID"].ToString()) > 0)
                 {
-                    String pSQL = "SELECT TOP (1) *  FROM  measurements WHERE activ = 1 AND deviceId = " + Session["deviceID"].ToString();
+                    String pSQL = "SELECT TOP (1) *  FROM  measurements WHERE activ = 1 AND topic = '" + Session["inTopic"].ToString() + "' ORDER BY registerAt";
                     SqlDataReader dr = onmotica.fetchReader(pSQL);
                     while (dr.Read())
                     {
