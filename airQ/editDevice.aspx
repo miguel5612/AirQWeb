@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-group">
                             <asp:label text="Dispositivo activo" runat="server" />
-                            <asp:CheckBox Text="" ID="deviceActiv" runat="server" CssClass="form-control"/>
+                            <asp:CheckBox Text="" ID="deviceActiv" runat="server" CssClass="form"/>
                         </div>
                         <div class="form-group">
                             <asp:button style="position:fixed" CssClass="form-control btn btn-primary pull-right" text="Enviar" id="btnEnviar" onclick="btnEnviar_click" runat="server" />
