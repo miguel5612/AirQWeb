@@ -46,6 +46,26 @@ namespace airQ.App_Code
             cmd.ExecuteNonQuery();
             myConn.Close();
         }
+        public static void executeSQLMonitor3D(string query)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["3DMonitorConnectionString"].ConnectionString);
+            myConn.Open();
+            cmd.CommandText = query;
+            cmd.Connection = myConn;
+            cmd.ExecuteNonQuery();
+            myConn.Close();
+        }
+        public static void executeSQLAirQ(string query)
+        {
+            SqlCommand cmd = new SqlCommand();
+            SqlConnection myConn = new SqlConnection(ConfigurationManager.ConnectionStrings["AirQConnectionString"].ConnectionString);
+            myConn.Open();
+            cmd.CommandText = query;
+            cmd.Connection = myConn;
+            cmd.ExecuteNonQuery();
+            myConn.Close();
+        }
         public static SqlDataReader fetchReader(string query)
         {
             SqlCommand cmd = new SqlCommand();

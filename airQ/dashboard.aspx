@@ -14,41 +14,41 @@
     <div class="row" runat="server" id="divMeters">
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
-                <h3>Temperatura/Humedad</h3>
+                <h3>Temperatura (ºC)/Humedad(%)</h3>
                 <div id="chart-divTemperaturaHumedad" style="width: 400px; height: 120px;"></div>
-                    <a href="#" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="http://wiki.seeedstudio.com/Grove-TemperatureAndHumidity_Sensor/" class="btn btn-outline-light">Mas informacion</a>
             </div>
         </div>
         <div class="col-sm-4 py-2">
             <div class="card h-100 border-primary">
                 <div class="card-body">
-                    <h3>Presion atmosferica</h3>
+                    <h3>Presion atmosferica (mBares)</h3>
                     <div id="chart-divPresionAtmosferica" style="margin-left:10rem; width: 400px; height: 120px;"></div>
-                    <a href="#" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="http://wiki.seeedstudio.com/Grove-Barometer_Sensor-BMP180/" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 py-2">
             <div class="card h-100 border-primary">
                 <div class="card-body">
-                    <h3>Alcoholes</h3>
+                    <h3>Alcoholes (PPM)</h3>
                     <div id="chart-divAlcoholes" style="margin-left:10rem; width: 400px; height: 120px;"></div>
-                    <a href="#" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="http://wiki.seeedstudio.com/Grove-Gas_Sensor-MQ5/" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
         </div>
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
-               <h3>TVOC/CO2</h3>
+               <h3>TVOC(PPM)/CO2(PPB)</h3>
                     <div id="chart-divTVOCCO2" style="width: 400px; height: 120px;"></div>
-                    <a href="#" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="https://learn.sparkfun.com/tutorials/ccs811-air-quality-breakout-hookup-guide/all" class="btn btn-outline-light">Mas informacion</a>
             </div>
         </div>        
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
                <h3>Gas Metano</h3>
                     <div id="chart-divGasMetano" style="margin-left:10rem; width: 400px; height: 120px;"></div>
-                    <a href="#" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="http://wiki.seeedstudio.com/Grove-Gas_Sensor-MQ9/" class="btn btn-outline-light">Mas informacion</a>
             </div>
         </div>
         <div class="col-sm-4 py-2">

@@ -25,7 +25,7 @@ namespace airQ
             }
 			if(!Page.IsPostBack)
 		    { 
-			    String pSQL = "SELECT * FROM devices WHERE deviceUsrId = " + Session["UsrID"].ToString();
+			    String pSQL = "SELECT * FROM devices WHERE deviceActiv = 1 AND deviceUsrId = " + Session["UsrID"].ToString();
 			    SqlDataReader dr = onmotica.fetchReader(pSQL);
                 bool firstFlag = true;
 			    while (dr.Read())
@@ -64,13 +64,13 @@ namespace airQ
             if(data.Length>0)
             {
                dynamic dataIn = JsonConvert.DeserializeObject(data);
-                txtData1.Value = int.Parse(dataIn.data1) >= 0 ? dataIn.data1 : 0;
-                txtData2.Value = int.Parse(dataIn.data2) >= 0 ? dataIn.data2 : 0;
-                txtData3.Value = int.Parse(dataIn.data3) >= 0 ? dataIn.data3 : 0;
-                txtData4.Value = int.Parse(dataIn.data4) >= 0 ? dataIn.data4 : 0;
-                txtData5.Value = int.Parse(dataIn.data5) >= 0 ? dataIn.data5 : 0;
-                txtData6.Value = int.Parse(dataIn.data6) >= 0 ? dataIn.data6 : 0;
-                txtData7.Value = int.Parse(dataIn.data7) >= 0 ? dataIn.data7 : 0;
+                txtData1.Value = int.Parse(dataIn.D1) >= 0 ? dataIn.D1 : 0;
+                txtData2.Value = int.Parse(dataIn.D2) >= 0 ? dataIn.D2 : 0;
+                txtData3.Value = int.Parse(dataIn.D3) >= 0 ? dataIn.D3 : 0;
+                txtData4.Value = int.Parse(dataIn.D4) >= 0 ? dataIn.D4 : 0;
+                txtData5.Value = int.Parse(dataIn.D5) >= 0 ? dataIn.D5 : 0;
+                txtData6.Value = int.Parse(dataIn.D6) >= 0 ? dataIn.D6 : 0;
+                txtData7.Value = int.Parse(dataIn.D7) >= 0 ? dataIn.D7 : 0;
             }
         }
 

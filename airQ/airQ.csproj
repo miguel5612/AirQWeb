@@ -268,6 +268,7 @@
     <Content Include="register.aspx" />
     <Content Include="registerDevice.aspx" />
     <Content Include="Scripts\dash.js" />
+    <Content Include="Scripts\gtag.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
