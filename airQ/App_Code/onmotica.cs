@@ -17,12 +17,17 @@ using System.Web.UI.WebControls.WebParts;
 using System.Text.RegularExpressions;
 using System.IO;
 
+using System.Data.SqlClient;
+using System.Globalization;
+using Newtonsoft.Json;
+
 namespace airQ.App_Code
 {
     //onmotica is an Miguel Califa creation :) 2018 C
 
     public class onmotica
     {
+
         public static string getBrokerAddress()
         {
             return "68.183.31.237";
@@ -39,6 +44,75 @@ namespace airQ.App_Code
             else if(location!="login" & location!="default")
             {
                 Response.Redirect("/login");
+            }
+        }
+        public static void saveIntoDB(string msg, string topic)
+        {
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberDecimalSeparator = ".";
+
+            var pSQL = "INSERT INTO [measurements] ([topic], [data], [registerAt], [activ], @otherFields) VALUES ('@topic', '@data', @registerAt, '@activ', @otherValues)";
+
+            try
+            {
+                dynamic jsonMesssage = JsonConvert.DeserializeObject(msg);
+                var data = "";
+                pSQL = pSQL.Replace("@topic", topic);
+                pSQL = pSQL.Replace("@registerAt", "GETDATE()");
+                pSQL = pSQL.Replace("@activ", "1");
+
+                data += Convert.ToDouble(jsonMesssage.D1).ToString(nfi);//temperatura - Cama caliente
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D2).ToString(nfi); //humedad - Extrusor
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D3).ToString(nfi); //Presion atmosferica - Motor 1
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D4).ToString(nfi); //Alcoholes - Motor 2
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D5).ToString(nfi); //TVOC - Motor 3
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D6).ToString(nfi); //CO2 - Motor 4
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D7).ToString(nfi); //Gas metano - Motor 5
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D8).ToString(nfi); //Latitud - Corriente
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D9).ToString(nfi); //Longitud - Voltaje
+                data += ",";
+                data += jsonMesssage.D10; //Fecha - Potencia electrica
+
+                if (topic.Contains("dron") & Convert.ToInt32(jsonMesssage.D1) > 0)
+                {
+                    //airQ
+
+                    var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [NH4], [Latitud], [Longitud], [fecha]";
+                    pSQL = pSQL.Replace("@otherFields", otherFields);
+                    var otherValues = data;
+                    pSQL = pSQL.Replace("@otherValues", otherValues);
+
+                    pSQL = pSQL.Replace("@data", data);
+                    executeSQLAirQ(pSQL);
+
+                }
+                else if (topic.Contains("printer") & Convert.ToInt32(jsonMesssage.D1) > 0)
+                {
+                    //3DPrinterSupervisionSys
+                    var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica]";
+                    pSQL = pSQL.Replace("@otherFields", otherFields);
+                    var otherValues = data;
+                    pSQL = pSQL.Replace("@otherValues", otherValues);
+
+                    pSQL = pSQL.Replace("@data", data);
+                    executeSQLMonitor3D(pSQL);
+                }
+            }
+            catch (Exception err)
+            {
+                //("Error insertando el registro -- ", err);
+            }
+            finally
+            {
+
             }
         }
         public static void executeSQL(string query)
