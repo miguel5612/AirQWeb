@@ -67,13 +67,30 @@ namespace airQ
                     {
                         if (dr.HasRows)
                         {
-                            txtData1.Value = int.Parse(dr["temperatura"].ToString()) <= 0 ? "0" : dr["temperatura"].ToString();
-                            txtData2.Value = int.Parse(dr["humedad"].ToString()) <= 0 ? "0" : dr["humedad"].ToString();
-                            txtData3.Value = int.Parse(dr["presionAtmosferica"].ToString()) <= 0 ? "0" : dr["presionAtmosferica"].ToString();
-                            txtData4.Value = int.Parse(dr["Alcohol"].ToString()) <= 0 ? "0" : dr["Alcohol"].ToString();
-                            txtData5.Value = int.Parse(dr["TVOC"].ToString()) <= 0 ? "0" : dr["TVOC"].ToString();
-                            txtData6.Value = int.Parse(dr["CO2"].ToString()) <= 0 ? "0" : dr["CO2"].ToString();
-                            txtData7.Value = int.Parse(dr["NH4"].ToString()) <= 0 ? "0" : dr["NH4"].ToString();
+                            var temperatura = dr["presionAtmosferica"].ToString();
+                            var humedad = dr["presionAtmosferica"].ToString();
+                            var presionAtmosferica = dr["presionAtmosferica"].ToString();
+                            var Alcohol = dr["presionAtmosferica"].ToString();
+                            var TVOC = dr["presionAtmosferica"].ToString();
+                            var CO2 = dr["presionAtmosferica"].ToString();
+                            var NH4 = dr["presionAtmosferica"].ToString();
+
+                            var tempDouble = onmotica.string2Double(temperatura);
+                            var humDouble = onmotica.string2Double(humedad);
+                            var PresAtDouble = onmotica.string2Double(presionAtmosferica);
+                            var AlcoholDouble = onmotica.string2Double(Alcohol);
+                            var TVOCDouble = onmotica.string2Double(TVOC);
+                            var CO2Double = onmotica.string2Double(CO2);
+                            var NH4Double = onmotica.string2Double(NH4);
+
+                            
+                            txtData1.Value = tempDouble <= 0 ? "0" : temperatura;
+                            txtData2.Value = humDouble <= 0 ? "0" : humedad;
+                            txtData3.Value = PresAtDouble <= 0 ? "0" : presionAtmosferica;
+                            txtData4.Value = AlcoholDouble <= 0 ? "0" : Alcohol;
+                            txtData5.Value = TVOCDouble <= 0 ? "0" : TVOC;
+                            txtData6.Value = CO2Double <= 0 ? "0" : CO2;
+                            txtData7.Value = NH4Double <= 0 ? "0" : NH4;
                         }
                     }
                 }

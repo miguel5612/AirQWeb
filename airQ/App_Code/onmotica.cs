@@ -46,6 +46,10 @@ namespace airQ.App_Code
                 Response.Redirect("/login");
             }
         }
+        public static Double string2Double(string numero)
+        {
+            return Convert.ToDouble(numero.Replace(".", ","));
+        }
         public static void saveIntoDB(string msg, string topic)
         {
             NumberFormatInfo nfi = new NumberFormatInfo();

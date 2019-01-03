@@ -3,7 +3,7 @@
     data3, options3,
     data4, options4,
     data5, options5,
-    temp = 0, hum = 0, presAt = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0;
+    temp = 0, hum = 0, presAt = 0, presAtmmHg = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0;
     
 function drawCharts() {
     gauge1();
@@ -17,6 +17,7 @@ function preLoadData() {
     temp = document.querySelectorAll("[ID*=txtData1]")[0].value,
     hum = document.querySelectorAll("[ID*=txtData2]")[0].value,
     presAt = document.querySelectorAll("[ID*=txtData3]")[0].value,
+    presAtmmHg = presAt * 0.75006375541921,
     alcoholPPM = document.querySelectorAll("[ID*=txtData4]")[0].value,
     TVOC = document.querySelectorAll("[ID*=txtData5]")[0].value,
     CO2 = document.querySelectorAll("[ID*=txtData6]")[0].value,
@@ -43,8 +44,9 @@ function gauge1() {
 
     options1 = {
         width: 400, height: 120,
-        redFrom: 50, redTo: 100,
-        yellowFrom: 40, yellowTo: 50,
+        redFrom: 70, redTo: 95,
+        yellowFrom: 35, yellowTo: 70,
+        max:95,
         minorTicks: 5
     };
 
@@ -66,13 +68,15 @@ function gauge1() {
 function gauge2() {
     data2 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Presion atmosferica', presAt]
+        ['Presion(mb)', presAt],
+        ['Presion(mmHg)', presAtmmHg]
     ]);
 
     options2 = {
         width: 400, height: 120,
-        redFrom: 90, redTo: 100,
-        yellowFrom: 75, yellowTo: 90,
+        redFrom: 1100, redTo: 1200,
+        yellowFrom: 1000, yellowTo: 1100,
+        max: 1200,
         minorTicks: 5
     };
 
@@ -94,8 +98,9 @@ function gauge3() {
 
     options3 = {
         width: 400, height: 120,
-        redFrom: 90, redTo: 100,
-        yellowFrom: 75, yellowTo: 90,
+        redFrom: 50, redTo: 100,
+        yellowFrom: 30, yellowTo: 50,
+        max: 100,
         minorTicks: 5
     };
 
@@ -118,8 +123,9 @@ function gauge4() {
 
     options4 = {
         width: 400, height: 120,
-        redFrom: 90, redTo: 100,
-        yellowFrom: 75, yellowTo: 90,
+        redFrom: 900, redTo: 1000,
+        yellowFrom: 800, yellowTo: 900,
+        max: 1000,
         minorTicks: 5
     };
 
@@ -146,6 +152,7 @@ function gauge5() {
         width: 400, height: 120,
         redFrom: 90, redTo: 100,
         yellowFrom: 75, yellowTo: 90,
+        max:100,
         minorTicks: 5
     };
 

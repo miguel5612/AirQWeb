@@ -14,6 +14,7 @@ $(function () {
                 temp = mensaje.D1;
                 hum = mensaje.D2;
                 presAt = mensaje.D3;
+                presAtmmHg = presAt * 0.75006375541921;
                 alcoholPPM = mensaje.D4;
                 TVOC = mensaje.D5;
                 CO2 = mensaje.D6;
