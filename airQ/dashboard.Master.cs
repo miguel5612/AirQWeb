@@ -24,8 +24,10 @@ namespace airQ
                 }
             }
 			if(!Page.IsPostBack)
-		    { 
-			    String pSQL = "SELECT * FROM devices WHERE deviceActiv = 1 AND deviceUsrId = " + Session["UsrID"].ToString();
+		    {
+                Session["unSubscribeTopics"] = "";
+
+                String pSQL = "SELECT * FROM devices WHERE deviceActiv = 1 AND deviceUsrId = " + Session["UsrID"].ToString();
 			    SqlDataReader dr = onmotica.fetchReader(pSQL);
                 bool firstFlag = true;
 			    while (dr.Read())
@@ -39,40 +41,44 @@ namespace airQ
                             Session["inTopic"] = dr["inTopic"].ToString();
                             firstFlag = false;
                         }
-					    AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
+                        else if(firstFlag & dr["deviceID"].ToString() == Request.QueryString["device"])
+                        {
+                            Session["deviceID"] = dr["deviceID"].ToString();
+                            Session["deviceName"] = dr["deviceName"].ToString();
+                            Session["inTopic"] = dr["inTopic"].ToString();
+                            firstFlag = false;
+                        }
+                        else
+                        { 
+                            Session["unSubscribeTopics"] = Session["unSubscribeTopics"].ToString() + dr["inTopic"].ToString();
+                        }
+                        AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
 				    }
 			    }
 			}
             if(Session["deviceID"] != null)
             {
+                txtData8.Value = Session["inTopic"].ToString(); // inTopic
                 if (Int32.Parse(Session["deviceID"].ToString()) > 0)
                 {
-                    String pSQL = "SELECT TOP (1) *  FROM  measurements WHERE activ = 1 AND topic = '" + Session["inTopic"].ToString() + "' ORDER BY registerAt";
+                    String pSQL = "SELECT TOP (1) *  FROM  measurements WHERE activ = 1 AND topic = '" + Session["inTopic"].ToString() + "' ORDER BY registerAt DESC";
                     SqlDataReader dr = onmotica.fetchReader(pSQL);
                     while (dr.Read())
                     {
                         if (dr.HasRows)
                         {
-                            fillInitialData(dr["data"].ToString());
+                            txtData1.Value = int.Parse(dr["temperatura"].ToString()) <= 0 ? "0" : dr["temperatura"].ToString();
+                            txtData2.Value = int.Parse(dr["humedad"].ToString()) <= 0 ? "0" : dr["humedad"].ToString();
+                            txtData3.Value = int.Parse(dr["presionAtmosferica"].ToString()) <= 0 ? "0" : dr["presionAtmosferica"].ToString();
+                            txtData4.Value = int.Parse(dr["Alcohol"].ToString()) <= 0 ? "0" : dr["Alcohol"].ToString();
+                            txtData5.Value = int.Parse(dr["TVOC"].ToString()) <= 0 ? "0" : dr["TVOC"].ToString();
+                            txtData6.Value = int.Parse(dr["CO2"].ToString()) <= 0 ? "0" : dr["CO2"].ToString();
+                            txtData7.Value = int.Parse(dr["NH4"].ToString()) <= 0 ? "0" : dr["NH4"].ToString();
                         }
                     }
                 }
             }
 		}
-        private void fillInitialData(string data)
-        {
-            if(data.Length>0)
-            {
-               dynamic dataIn = JsonConvert.DeserializeObject(data);
-                txtData1.Value = int.Parse(dataIn.D1) >= 0 ? dataIn.D1 : 0;
-                txtData2.Value = int.Parse(dataIn.D2) >= 0 ? dataIn.D2 : 0;
-                txtData3.Value = int.Parse(dataIn.D3) >= 0 ? dataIn.D3 : 0;
-                txtData4.Value = int.Parse(dataIn.D4) >= 0 ? dataIn.D4 : 0;
-                txtData5.Value = int.Parse(dataIn.D5) >= 0 ? dataIn.D5 : 0;
-                txtData6.Value = int.Parse(dataIn.D6) >= 0 ? dataIn.D6 : 0;
-                txtData7.Value = int.Parse(dataIn.D7) >= 0 ? dataIn.D7 : 0;
-            }
-        }
 
         private void AddMenuItem(string text, string btnID)
 		{

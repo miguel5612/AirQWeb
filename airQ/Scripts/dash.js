@@ -4,9 +4,34 @@
     data4, options4,
     data5, options5,
     temp = 0, hum = 0, presAt = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0;
+    
+function drawCharts() {
+    gauge1();
+    gauge2();
+    gauge3();
+    gauge4();
+    gauge5();
+}
 
-google.charts.load('current', { 'packages': ['gauge'] });
-google.charts.setOnLoadCallback(drawCharts);
+function preLoadData() {
+    temp = document.querySelectorAll("[ID*=txtData1]")[0].value,
+    hum = document.querySelectorAll("[ID*=txtData2]")[0].value,
+    presAt = document.querySelectorAll("[ID*=txtData3]")[0].value,
+    alcoholPPM = document.querySelectorAll("[ID*=txtData4]")[0].value,
+    TVOC = document.querySelectorAll("[ID*=txtData5]")[0].value,
+    CO2 = document.querySelectorAll("[ID*=txtData6]")[0].value,
+    Metano = document.querySelectorAll("[ID*=txtData7]")[0].value;
+    console.log("loaded");
+}
+$(document).ready(function () {
+
+    google.charts.load('current', { 'packages': ['gauge'] });
+    google.charts.setOnLoadCallback(drawCharts);
+
+    //preLoadData();
+    //drawCharts();
+    console.log("loaded");
+});
 
 
 function gauge1() {
@@ -135,10 +160,3 @@ function gauge5() {
     */
 }
 
-function drawCharts() {
-    gauge1();
-    gauge2();
-    gauge3();
-    gauge4();
-    gauge5();
-}

@@ -47,7 +47,7 @@ namespace airQ
             MqttClient client;
             string clientId;
 
-            string BrokerAddress = "68.183.31.237";
+            string BrokerAddress = onmotica.getBrokerAddress();
 
             client = new MqttClient(BrokerAddress);
 
@@ -60,7 +60,11 @@ namespace airQ
 
             client.Connect(clientId);
 
-            client.Subscribe(new String[] { "droneFenix/2/estacion1" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            String inTopic = Session["inTopic"].ToString();
+            String unSubscribeTopics = Session["unSubscribeTopics"].ToString();
+
+            client.Unsubscribe(new string[] { unSubscribeTopics });
+            client.Subscribe(new String[] { inTopic  }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
 
         }
@@ -69,11 +73,12 @@ namespace airQ
         // this code runs when a message was received
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            var inTopic = e.Topic;
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             txtReceived.Text = ReceivedMessage;
             var context = GlobalHost.ConnectionManager.GetHubContext<dashboardHub>();
 
-            context.Clients.All.updateInfo(ReceivedMessage);
+            context.Clients.All.updateInfo(ReceivedMessage, inTopic);
             //Response.Redirect("/dashboard");
         }
     }

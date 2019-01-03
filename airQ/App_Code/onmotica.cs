@@ -20,8 +20,13 @@ using System.IO;
 namespace airQ.App_Code
 {
     //onmotica is an Miguel Califa creation :) 2018 C
+
     public class onmotica
     {
+        public static string getBrokerAddress()
+        {
+            return "68.183.31.237";
+        }
         public static void isLogged(System.Web.SessionState.HttpSessionState Session, HttpResponse Response, String location)
         {
             if (Session["UsrID"] != null & Session["UsrName"] != null)

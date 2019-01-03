@@ -94,6 +94,15 @@ namespace airQ {
         protected global::System.Web.UI.WebControls.HiddenField txtData7;
         
         /// <summary>
+        /// txtData8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txtData8;
+        
+        /// <summary>
         /// menu control.
         /// </summary>
         /// <remarks>

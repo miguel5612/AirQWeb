@@ -30,7 +30,7 @@ namespace airQ
             MqttClient client;
             string clientId;
 
-            string BrokerAddress = "68.183.31.237";
+            string BrokerAddress = onmotica.getBrokerAddress();
 
             client = new MqttClient(BrokerAddress);
 
@@ -54,7 +54,7 @@ namespace airQ
         {
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             string topic = e.Topic;
-            var pSQL = "INSERT INTO [measurements] ([topic], [data], [registerAt], [activ]) VALUES ('@topic', '@data', @registerAt, '@activ')";
+            var pSQL = "INSERT INTO [measurements] ([topic], [data], [registerAt], [activ], @otherFields) VALUES ('@topic', '@data', @registerAt, '@activ', @otherValues)";
 
             try
             {
@@ -81,18 +81,30 @@ namespace airQ
                 data += jsonMesssage.D8; //Latitud - Corriente
                 data += ",";
                 data += jsonMesssage.D9; //Longitud - Voltaje
-                data += ",";
-                
-                if (topic.Contains("dron"))
+
+                if (topic.Contains("dron") & Convert.ToInt32(jsonMesssage.D1)>0)
                 {
                     //airQ
+
+                    var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [NH4], [Latitud], [Longitud], [fecha]";
+                    pSQL = pSQL.Replace("@otherFields", otherFields);
+                    var otherValues = data;
+                    pSQL = pSQL.Replace("@otherValues", otherValues);
+
                     pSQL = pSQL.Replace("@data", data);
                     onmotica.executeSQLAirQ(pSQL);
+
                 }
-                else if (topic.Contains("printer"))
+                else if (topic.Contains("printer") & Convert.ToInt32(jsonMesssage.D1) > 0)
                 {
                     //3DPrinterSupervisionSys
-                    data += jsonMesssage.D10; //Longitud - Potencia electrica
+                    data += jsonMesssage.D10; // - Potencia electrica
+
+                    var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica]";
+                    pSQL = pSQL.Replace("@otherFields", otherFields);
+                    var otherValues = data;
+                    pSQL = pSQL.Replace("@otherValues", otherValues);
+
                     pSQL = pSQL.Replace("@data", data);
                     onmotica.executeSQLMonitor3D(pSQL);
                 }
