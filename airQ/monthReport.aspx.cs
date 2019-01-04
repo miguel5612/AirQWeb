@@ -33,7 +33,7 @@ namespace airQ
                     txtDate.Text = "1" + "/" + now.Month.ToString() + "/" + now.Year;
                 }
                 dateString = txtDate.Text;
-                dateValue = DateTime.Parse(dateString);
+                dateValue = DateTime.Parse(dateString.ToString());
                 Session["month"] = dateValue.ToString("MM");
                 Session["year"] = dateValue.ToString("yyyy");
                 Session["day"] = dateValue.ToString("dd");
