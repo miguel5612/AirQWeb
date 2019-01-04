@@ -31,7 +31,7 @@
 								ReadOnly="True" SortExpression="deviceID" Visible="False" />
 							<asp:HyperLinkField Text="ver ubicacion en el mapa" DataNavigateUrlFields="latitud,longitud" 
 								DataNavigateUrlFormatString="https://www.google.com/maps/@{0},{1},4.23z" />       
-                             <asp:boundfield datafield="Fecha" dataformatstring="{0:MMMM d, yyyy}" htmlencode="false" />
+                             <asp:boundfield datafield="registerAt" htmlencode="false" />
 							<asp:BoundField DataField="topic" HeaderText="Topico de entrada" 
 								SortExpression="topic" >
 							<HeaderStyle HorizontalAlign="Left" />
