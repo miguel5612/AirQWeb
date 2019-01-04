@@ -20,39 +20,45 @@ namespace airQ
         protected void Page_Load(object sender, EventArgs e)
         {
             onmotica.isLogged(Session, Response, "monthReport");
-            var now = DateTime.Now;
-            if (Session["month"]!=null)
-            {
-                txtDate.Text = "1" + "/" + Session["month"].ToString() + "/" + now.Year;
-                Session["month"] = Session["month"];
+            if(!Page.IsPostBack)
+            { 
+                var now = DateTime.Now;
+                if (Session["month"]!=null)
+                {
+                    txtDate.Text = "1" + "/" + Session["month"].ToString() + "/" + now.Year;
+                    Session["month"] = Session["month"];
+                }
+                else
+                {
+                    txtDate.Text = "1" + "/" + now.Month.ToString() + "/" + now.Year;
+                }
+                dateString = txtDate.Text;
+                dateValue = DateTime.Parse(dateString);
+                Session["month"] = dateValue.ToString("MM");
+                Session["year"] = dateValue.ToString("yyyy");
+                Session["day"] = dateValue.ToString("dd");
             }
-            else
-            {
-                txtDate.Text = "1" + "/" + now.Month.ToString() + "/" + now.Year;
-            }
+        }
+
+        protected void btnCalcular_Click(object sender, EventArgs e)
+        {
             dateString = txtDate.Text;
             dateValue = DateTime.Parse(dateString);
             Session["month"] = dateValue.ToString("MM");
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
-        }
 
-        protected void btnCalcular_Click(object sender, EventArgs e)
-        {
             var pSQL = "SELECT * FROM measurements WHERE Fecha = " + onmotica.convertD2IDate(DateTime.Parse(txtDate.Text));
-            SqlDataReader dr =  onmotica.fetchReader(pSQL);
-
+            SqlDataReader dr = onmotica.fetchReader(pSQL);
         }
 
         protected void txtDate_TextChanged(object sender, EventArgs e)
         {
             dateString = txtDate.Text;
-            DateTime.TryParseExact(dateString, "g", enUS,
-                                 DateTimeStyles.AllowLeadingWhite, out dateValue);
+            dateValue = DateTime.Parse(dateString);
             Session["month"] = dateValue.ToString("MM");
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
-            Response.Redirect("/monthReport");
         }
     }
 }

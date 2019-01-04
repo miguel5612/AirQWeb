@@ -6,12 +6,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	<asp:ScriptManager ID="scriptmanager1" runat="server">
 	</asp:ScriptManager>
+	<br />    
+            <h3>Reporte mensual (<%: Session["day"].ToString() + "-" + Session["month"].ToString() + "-" + Session["year"].ToString() %>  / <%: DateTime.Parse( "1" + "/" +  (Convert.ToInt32( Session["month"]) + 1).ToString()  + "/" + Session["year"].ToString()).AddDays(-1).ToString("dd-MM-yyyy") %>) </h3>
+            <p>En este reporte se muestran los registros apartir de la fecha seleccionada hasta final de mes.</p>
 	<br />
-	<br />
-	<div>
-		<asp:TextBox ID="txtDate" runat="server" OnTextChanged="txtDate_TextChanged"></asp:TextBox>
+	<div>        
+		<asp:TextBox ID="txtDate" runat="server" AutoPostBack="True" OnTextChanged="txtDate_TextChanged"></asp:TextBox>
 		<asp:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Enabled="True"
-					TargetControlID="txtDate">
+					TargetControlID="txtDate" Format="dd/MM/yyyy" >
 				</asp:CalendarExtender>
         <asp:Button Text="Calcular" CssClass="btn btn-success" ID="btnCalcular" OnClick ="btnCalcular_Click" runat="server" />
 		<br />
