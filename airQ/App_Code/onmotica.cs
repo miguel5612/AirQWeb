@@ -83,7 +83,7 @@ namespace airQ.App_Code
                 data += ",";
                 data += Convert.ToDouble(jsonMesssage.D9).ToString(nfi); //Longitud - Voltaje
 
-                if (topic.Contains("dron") & Convert.ToInt32(jsonMesssage.D1) > 0)
+                if (topic.Contains("dron"))
                 {
                     data += ",";
                     data += convertD2IDate(DateTime.Now); //Fecha - Potencia electrica
@@ -99,7 +99,7 @@ namespace airQ.App_Code
                     executeSQLAirQ(pSQL);
 
                 }
-                else if (topic.Contains("printer") & Convert.ToInt32(jsonMesssage.D1) > 0)
+                else if (topic.Contains("printer"))
                 {
                     data += ",";
                     data += jsonMesssage.D10; // Potencia electrica
