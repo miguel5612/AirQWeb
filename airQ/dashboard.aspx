@@ -60,9 +60,9 @@
             <div class="card bg-primary">
                 <div class="card-body">
                      <h3>Reportes</h3>
-                    <asp:Button Text="Descargar reporte diario" ID="dayReport" runat="server" />
-                    <asp:Button Text="Descargar reporte semanal" ID="weekReport" runat="server" />
-                    <asp:Button Text="Descargar reporte mensual" ID="monthReport" runat="server" />
+                    <asp:Button Text="Descargar reporte diario" ID="dayReport" runat="server" OnClick="dayReport_Click" />
+                    <asp:Button Text="Descargar reporte semanal" ID="weekReport" runat="server" OnClick="weekReport_Click" />
+                    <asp:Button Text="Descargar reporte mensual" ID="monthReport" runat="server" OnClick="monthReport_Click" />
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>

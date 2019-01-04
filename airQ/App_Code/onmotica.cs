@@ -82,11 +82,12 @@ namespace airQ.App_Code
                 data += Convert.ToDouble(jsonMesssage.D8).ToString(nfi); //Latitud - Corriente
                 data += ",";
                 data += Convert.ToDouble(jsonMesssage.D9).ToString(nfi); //Longitud - Voltaje
-                data += ",";
-                data += jsonMesssage.D10; //Fecha - Potencia electrica
 
                 if (topic.Contains("dron") & Convert.ToInt32(jsonMesssage.D1) > 0)
                 {
+                    data += ",";
+                    data += convertD2IDate(DateTime.Now); //Fecha - Potencia electrica
+
                     //airQ
 
                     var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [NH4], [Latitud], [Longitud], [fecha]";
@@ -100,6 +101,9 @@ namespace airQ.App_Code
                 }
                 else if (topic.Contains("printer") & Convert.ToInt32(jsonMesssage.D1) > 0)
                 {
+                    data += ",";
+                    data += jsonMesssage.D10; // Potencia electrica
+
                     //3DPrinterSupervisionSys
                     var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);

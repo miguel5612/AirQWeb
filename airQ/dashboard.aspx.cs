@@ -81,5 +81,20 @@ namespace airQ
             context.Clients.All.updateInfo(ReceivedMessage, inTopic);
             //Response.Redirect("/dashboard");
         }
+
+        protected void dayReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/dayReport");
+        }
+
+        protected void weekReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/weekReport");
+        }
+
+        protected void monthReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/monthReport");
+        }
     }
 }
