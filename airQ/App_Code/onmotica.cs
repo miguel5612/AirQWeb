@@ -43,6 +43,7 @@ namespace airQ.App_Code
             }
             else if(location!="login" & location!="default")
             {
+                Session.RemoveAll();
                 Response.Redirect("/login");
             }
         }

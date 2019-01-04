@@ -9,11 +9,11 @@
 	<br />
 	<br />
 	<div>
-		<asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+		<asp:TextBox ID="txtDate" runat="server" OnTextChanged="txtDate_TextChanged"></asp:TextBox>
 		<asp:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Enabled="True"
 					TargetControlID="txtDate">
 				</asp:CalendarExtender>
-
+        <asp:Button Text="Calcular" CssClass="btn btn-success" ID="btnCalcular" OnClick ="btnCalcular_Click" runat="server" />
 		<br />
 		<br />
 		<div class="container">
@@ -22,7 +22,7 @@
 			<div class="alert info">
 				<div style="margin-left:25%">
 					<asp:GridView runat="server" ID="gvReport" DataSourceID="dsDevices"
-						EmptyDataText="No tienes aun dispositivos registrados!" AllowPaging="True" 
+						EmptyDataText="No tienes registros actualmente!" AllowPaging="True" 
 						AllowSorting="True" PageSize="20" BackColor="White" BorderColor="#DEDFDE" 
 						BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
 						GridLines="Vertical" AutoGenerateColumns ="false">
@@ -80,11 +80,13 @@
     </script>
         <asp:SqlDataSource runat="server" ID="dsDevices" ConnectionString="<%$ ConnectionStrings:AirQConnectionString %>"
 		ProviderName="<%$ ConnectionStrings:AirQConnectionString.ProviderName %>"
-	SelectCommand="SELECT * FROM measurements WHERE ([topic] = @iNTopic)  ORDER BY registerAt DESC">
+	SelectCommand="SELECT * FROM measurements WHERE ([topic] = @iNTopic) And MONTH(registerAt) = @month  And DAY(registerAt)>= @day AND YEAR(registerAt) = @year ORDER BY registerAt DESC">
             <selectparameters>
                 <asp:SessionParameter Name="iNTopic" SessionField="iNTopic" Type="String" />
+                <asp:SessionParameter Name="day" SessionField="day" Type="String" />
+                <asp:SessionParameter Name="month" SessionField="month" Type="String" />
+                <asp:SessionParameter Name="year" SessionField="year" Type="String" />
             </selectparameters>
 </asp:SqlDataSource>
-		<asp:Button Text="Calcular" CssClass="btn btn-success" ID="btnCalcular" OnClick ="btnCalcular_Click" runat="server" />
 	</div>
 </asp:Content>
