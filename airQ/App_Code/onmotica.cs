@@ -86,7 +86,7 @@ namespace airQ.App_Code
                 if (topic.Contains("dron"))
                 {
                     data += ",";
-                    data += convertD2IDate(DateTime.Now); //Fecha - Potencia electrica
+                    data += convertD2IDateTime(DateTime.Now); //Fecha - Potencia electrica
 
                     //airQ
 
@@ -104,8 +104,10 @@ namespace airQ.App_Code
                     data += ",";
                     data += jsonMesssage.D10; // Potencia electrica
 
+                    data += ",";
+                    data += convertD2IDateTime(DateTime.Now); //Fecha
                     //3DPrinterSupervisionSys
-                    var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica]";
+                    var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica], [Fecha]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);
                     var otherValues = data;
                     pSQL = pSQL.Replace("@otherValues", otherValues);

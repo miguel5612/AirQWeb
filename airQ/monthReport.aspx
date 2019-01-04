@@ -30,11 +30,8 @@
 							<asp:BoundField DataField="dataId" HeaderText="Numero identificador" InsertVisible="False" 
 								ReadOnly="True" SortExpression="deviceID" Visible="False" />
 							<asp:HyperLinkField Text="ver ubicacion en el mapa" DataNavigateUrlFields="latitud,longitud" 
-								DataNavigateUrlFormatString="https://www.google.com/maps/@{0},{1},4.23z" />                            
-                            <asp:BoundField DataField="Fecha" HeaderText="Fecha de entrada" 
-								SortExpression="Fecha"  DataFormatString="{dd-MM-yyyy}" HtmlEncode="false">
-							<HeaderStyle HorizontalAlign="Left" />
-							</asp:BoundField>
+								DataNavigateUrlFormatString="https://www.google.com/maps/@{0},{1},4.23z" />       
+                             <asp:boundfield datafield="Fecha" dataformatstring="{0:MMMM d, yyyy}" htmlencode="false" />
 							<asp:BoundField DataField="topic" HeaderText="Topico de entrada" 
 								SortExpression="topic" >
 							<HeaderStyle HorizontalAlign="Left" />
