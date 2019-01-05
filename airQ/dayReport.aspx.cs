@@ -12,7 +12,7 @@ using System.Data;
 
 namespace airQ
 {
-    public partial class monthReport : System.Web.UI.Page
+    public partial class dayReport : System.Web.UI.Page
     {
         CultureInfo enUS = new CultureInfo("en-US");
         string dateString;
@@ -24,24 +24,15 @@ namespace airQ
             if(!Page.IsPostBack)
             { 
                 var now = DateTime.Now;
-                if (Session["month"]!=null)
+                if (Session["month"]==null)
                 {
-                    txtDate.Text = "1" + "/" + Session["month"].ToString() + "/" + now.Year;
-                    Session["month"] = Session["month"];
+                    txtDate.Text = DateTime.Now.Date.ToString("dd/MM/yyyy"); ;
                 }
-                else
-                {
-                    txtDate.Text = "1" + "/" + now.Month.ToString() + "/" + now.Year;
-                }
-                dateString = txtDate.Text;
+                dateString = txtDate.Text == "" ? DateTime.Now.Date.ToString():txtDate.Text;
                 dateValue = DateTime.Parse(dateString.ToString());
                 Session["month"] = dateValue.ToString("MM");
                 Session["year"] = dateValue.ToString("yyyy");
                 Session["day"] = dateValue.ToString("dd");
-
-                var dateProyected = DateTime.Parse("1/" + dateValue.Month + "/" + dateValue.Year).AddMonths(1).AddDays(-1);
-                Session["endDay"] = dateProyected.ToString("dd");
-
                 calculatePromsAndResultates();
             }
         }
@@ -54,9 +45,6 @@ namespace airQ
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
 
-            var dateProyected = DateTime.Parse("1/" + dateValue.Month + "/" + dateValue.Year).AddMonths(1).AddDays(-1);
-            Session["endDay"] = dateProyected.ToString("dd");
-
             calculatePromsAndResultates();
         }
 
@@ -67,16 +55,16 @@ namespace airQ
             Session["month"] = dateValue.ToString("MM");
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
-
-            var dateProyected = DateTime.Parse("1/" + dateValue.Month + "/" + dateValue.Year).AddMonths(1).AddDays(-1);
-            Session["endDay"] = dateProyected.ToString("dd");
             calculatePromsAndResultates();
         }
 
         protected void calculatePromsAndResultates()
         {
-            var campoFecha = DateTime.Parse(txtDate.Text); //Fecha de inicio
-            var fechaFin = DateTime.Parse("1" + "/" + campoFecha.Month.ToString() + "/" + campoFecha.Year.ToString()).AddMonths(1).AddDays(-1);
+
+            dateString = txtDate.Text == "" ? DateTime.Now.Date.ToString() : txtDate.Text;
+
+            var campoFecha = DateTime.Parse(dateString); //Fecha de inicio
+            var fechaFin = campoFecha.AddDays(1);
             var pSQL = "SELECT temperatura,humedad,presionAtmosferica,Alcohol,TVOC,CO2,NH4 FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(campoFecha) + "' AND registerAt < '" + onmotica.convertD2IDate(fechaFin) + "'";
             SqlDataReader dr = onmotica.fetchReader(pSQL);
 

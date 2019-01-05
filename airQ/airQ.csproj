@@ -253,6 +253,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="map.aspx" />
+    <Content Include="dayReport.aspx" />
+    <Content Include="weekReport.aspx" />
     <Content Include="monthReport.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -399,6 +401,20 @@
     </Compile>
     <Compile Include="map.aspx.designer.cs">
       <DependentUpon>map.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dayReport.aspx.cs">
+      <DependentUpon>dayReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dayReport.aspx.designer.cs">
+      <DependentUpon>dayReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="weekReport.aspx.cs">
+      <DependentUpon>weekReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="weekReport.aspx.designer.cs">
+      <DependentUpon>weekReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="monthReport.aspx.cs">
       <DependentUpon>monthReport.aspx</DependentUpon>

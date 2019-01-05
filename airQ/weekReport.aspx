@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/dashboard.Master" AutoEventWireup="true" CodeBehind="monthReport.aspx.cs" Inherits="airQ.monthReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/dashboard.Master" AutoEventWireup="true" CodeBehind="weekReport.aspx.cs" Inherits="airQ.weekReport" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -7,7 +7,7 @@
 	<asp:ScriptManager ID="scriptmanager1" runat="server">
 	</asp:ScriptManager>
 	<br />    
-            <h3>Reporte mensual (<%: Session["day"].ToString() + "-" + Session["month"].ToString() + "-" + Session["year"].ToString() %>  / <%: DateTime.Parse( "1" + "/" +  (Convert.ToInt32( Session["month"]) + 1).ToString()  + "/" + Session["year"].ToString()).AddDays(-1).ToString("dd-MM-yyyy") %>) </h3>
+            <h3>Reporte semanal (<%: Session["day"].ToString() + "-" + Session["month"].ToString() + "-" + Session["year"].ToString() %>  / <%: DateTime.Parse(Session["day"].ToString() + "/" +  Session["month"].ToString()  + "/" + Session["year"].ToString()).AddDays(7).ToString("dd-MM-yyyy") %>) </h3>
             <p>En este reporte se muestran los registros apartir de la fecha seleccionada hasta final de mes.</p>
 	<br />
 	<div>        
@@ -116,13 +116,13 @@
     </script>
         <asp:SqlDataSource runat="server" ID="dsDevices" ConnectionString="<%$ ConnectionStrings:AirQConnectionString %>"
 		ProviderName="<%$ ConnectionStrings:AirQConnectionString.ProviderName %>"
-	SelectCommand="SELECT * FROM measurements WHERE ([topic] = @iNTopic) And MONTH(registerAt) = @month  AND DAY(registerAt)>= @day AND DAY(registerAt)< @endDay AND YEAR(registerAt) = @year ORDER BY registerAt ASC">
+	SelectCommand="SELECT * FROM measurements WHERE ([topic] = @iNTopic) And MONTH(registerAt) = @month  And DAY(registerAt)>= @day And DAY(registerAt)<= @endDay AND YEAR(registerAt) = @year ORDER BY registerAt ASC">
             <selectparameters>
                 <asp:SessionParameter Name="iNTopic" SessionField="iNTopic" Type="String" />
                 <asp:SessionParameter Name="day" SessionField="day" Type="String" />
                 <asp:SessionParameter Name="endDay" SessionField="endDay" Type="String" />
                 <asp:SessionParameter Name="month" SessionField="month" Type="String" />
-                <asp:SessionParameter Name="year" SessionField="year" Type="String" />
+                <asp:SessionParameter Name="year" SessionField="year" Type="String" />                
             </selectparameters>
 </asp:SqlDataSource>
 	</div>
