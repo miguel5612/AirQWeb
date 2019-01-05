@@ -60,9 +60,9 @@
             <div class="card bg-primary">
                 <div class="card-body">
                      <h3>Reportes</h3>
-                    <asp:Button Text="Descargar reporte diario" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-info" ID="dayReport" runat="server" OnClick="dayReport_Click" /><br />
-                    <asp:Button Text="Descargar reporte semanal" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-info" ID="weekReport" runat="server" OnClick="weekReport_Click" /><br />
-                    <asp:Button Text="Descargar reporte mensual" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-info" ID="monthReport" runat="server" OnClick="monthReport_Click" /><br />
+                    <asp:Button Text="Descargar reporte diario" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-danger" ID="dayReport" runat="server" OnClick="dayReport_Click" /><br />
+                    <asp:Button Text="Descargar reporte semanal" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-danger" ID="weekReport" runat="server" OnClick="weekReport_Click" /><br />
+                    <asp:Button Text="Descargar reporte mensual" style="margin-left: 2rem;width: 100%;margin-bottom: 1rem;" CssClass="btn btn-danger" ID="monthReport" runat="server" OnClick="monthReport_Click" /><br />
                     <a href="#" class="btn btn-outline-light">Mas informacion</a>
                 </div>
             </div>
