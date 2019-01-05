@@ -38,6 +38,7 @@ namespace airQ
                 Session["month"] = dateValue.ToString("MM");
                 Session["year"] = dateValue.ToString("yyyy");
                 Session["day"] = dateValue.ToString("dd");
+                calculatePromsAndResultates();
             }
         }
 
@@ -49,9 +50,26 @@ namespace airQ
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
 
-            var pSQL = "SELECT temperatura,humedad,presionAtmosferica,Alcohol,TVOC,CO2,NH4 FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(DateTime.Parse(txtDate.Text)) + "'";
+            calculatePromsAndResultates();
+        }
+
+        protected void txtDate_TextChanged(object sender, EventArgs e)
+        {
+            dateString = txtDate.Text;
+            dateValue = DateTime.Parse(dateString);
+            Session["month"] = dateValue.ToString("MM");
+            Session["year"] = dateValue.ToString("yyyy");
+            Session["day"] = dateValue.ToString("dd");
+            calculatePromsAndResultates();
+        }
+
+        protected void calculatePromsAndResultates()
+        {
+            var campoFecha = DateTime.Parse(txtDate.Text); //Fecha de inicio
+            var fechaFin = DateTime.Parse("1" + "/" + campoFecha.Month.ToString() + "/" + campoFecha.Year.ToString()).AddMonths(1).AddDays(-1);
+            var pSQL = "SELECT temperatura,humedad,presionAtmosferica,Alcohol,TVOC,CO2,NH4 FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(campoFecha) + "' AND registerAt < '" + onmotica.convertD2IDate(fechaFin) + "'";
             SqlDataReader dr = onmotica.fetchReader(pSQL);
-            
+
             DataTable pResult = new DataTable();
 
             DataTable promResult = new DataTable();
@@ -83,7 +101,7 @@ namespace airQ
                     TVOC += double.Parse(dr["CO2"].ToString());
                     NH4 += double.Parse(dr["NH4"].ToString());
                     numMuestras++;
-                }               
+                }
 
             }
 
@@ -147,11 +165,11 @@ namespace airQ
             }
             if (NH4 == 0)
             {
-                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0", "Verifique la conexion del sensor de gas metano");
+                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas metano");
             }
             else
             {
-                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales" , "");
+                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
             }
 
             this.GVProms.Visible = true;
@@ -165,15 +183,6 @@ namespace airQ
             GVResults.DataSource = pResult;
 
             GVResults.DataBind();
-        }
-
-        protected void txtDate_TextChanged(object sender, EventArgs e)
-        {
-            dateString = txtDate.Text;
-            dateValue = DateTime.Parse(dateString);
-            Session["month"] = dateValue.ToString("MM");
-            Session["year"] = dateValue.ToString("yyyy");
-            Session["day"] = dateValue.ToString("dd");
         }
     }
 }
