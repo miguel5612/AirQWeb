@@ -49,14 +49,24 @@ namespace airQ
             Session["year"] = dateValue.ToString("yyyy");
             Session["day"] = dateValue.ToString("dd");
 
-            var pSQL = "SELECT * FROM measurements WHERE Fecha = " + onmotica.convertD2IDate(DateTime.Parse(txtDate.Text));
+            var pSQL = "SELECT temperatura,humedad,presionAtmosferica,Alcohol,TVOC,CO2,NH4 FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(DateTime.Parse(txtDate.Text)) + "'";
             SqlDataReader dr = onmotica.fetchReader(pSQL);
             
             DataTable pResult = new DataTable();
 
-            pResult.Columns.Add("Nombre", typeof(Double));
-            pResult.Columns.Add("Resultado", typeof(Double));
-            pResult.Columns.Add("Recomendacion", typeof(Double));
+            DataTable promResult = new DataTable();
+
+            pResult.Columns.Add("Nombre", typeof(String));
+            pResult.Columns.Add("Resultado", typeof(String));
+            pResult.Columns.Add("Recomendacion", typeof(String));
+
+            promResult.Columns.Add("Temperatura", typeof(Double));
+            promResult.Columns.Add("Humedad", typeof(Double));
+            promResult.Columns.Add("PresionAtmosferica", typeof(Double));
+            promResult.Columns.Add("Alcohol", typeof(Double));
+            promResult.Columns.Add("TVOC", typeof(Double));
+            promResult.Columns.Add("CO2", typeof(Double));
+            promResult.Columns.Add("NH4", typeof(Double));
 
             double temp = 0, hum = 0, presAt = 0, Alcohol = 0, CO2 = 0, TVOC = 0, NH4 = 0;
             int numMuestras = 0;
@@ -73,73 +83,88 @@ namespace airQ
                     TVOC += double.Parse(dr["CO2"].ToString());
                     NH4 += double.Parse(dr["NH4"].ToString());
                     numMuestras++;
-                }
-                if (temp > 0) { temp = temp / numMuestras; };
-                if (hum > 0) { hum = hum / numMuestras; };
-                if (presAt > 0) { presAt = presAt / numMuestras; };
-                if (Alcohol > 0) { Alcohol = Alcohol / numMuestras; };
-                if (CO2 > 0) { CO2 = CO2 / numMuestras; };
-                if (TVOC > 0) { TVOC = TVOC / numMuestras; };
-                if (NH4 > 0) { NH4 = NH4 / numMuestras; };
-
-                if(temp == 0)
-                {
-                    pResult.Rows.Add("Alerta en temperatura", "La temperatura promedio es igual a 0ºC", "Verifique la conexion del sensor de temperatura");
-                }
-                else
-                {
-                    pResult.Rows.Add("La temperatura promedio es: " + temp + " ºC", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (hum == 0)
-                {
-                    pResult.Rows.Add("Alerta en hum", "La humedad promedio es igual a 0%", "Verifique la conexion del sensor de humedad");
-                }
-                else
-                {
-                    pResult.Rows.Add("La humedad promedio es: " + hum + " %", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (presAt == 0)
-                {
-                    pResult.Rows.Add("Alerta en presion atmosferica", "La presion atmosferica promedio es igual a 0mB", "Verifique la conexion del sensor de de presion atmosferica");
-                }
-                else
-                {
-                    pResult.Rows.Add("La presion atmosferica promedio es: " + presAt + " mB", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (Alcohol == 0)
-                {
-                    pResult.Rows.Add("Alerta en Alcohol", "Los niveles de Alcohol promedio es igual a 0ppb", "Verifique la conexion del sensor de temperatura");
-                }
-                else
-                {
-                    pResult.Rows.Add("Los niveles de Alcohol promedio es: " + Alcohol + " ppb", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (CO2 == 0)
-                {
-                    pResult.Rows.Add("Alerta en CO2", "Los niveles de CO2 promedio es igual a 0", "Verifique la conexion del sensor de CO2");
-                }
-                else
-                {
-                    pResult.Rows.Add("Los niveles promedio de CO2 es: " + CO2 + " ppb", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (TVOC == 0)
-                {
-                    pResult.Rows.Add("Alerta en TVOC", "Los niveles de TVOC promedio es igual a 0", "Verifique la conexion del sensor de TVOC");
-                }
-                else
-                {
-                    pResult.Rows.Add("Los niveles de TVOC promedio es: " + TVOC + " ppb", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
-                if (NH4 == 0)
-                {
-                    pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0", "Verifique la conexion del sesnor de gas metano");
-                }
-                else
-                {
-                    pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4 + " ppm", "Este valor se obtuvo promediando " + numMuestras, "");
-                }
+                }               
 
             }
+
+            if (temp > 0) { temp = temp / numMuestras; };
+            if (hum > 0) { hum = hum / numMuestras; };
+            if (presAt > 0) { presAt = presAt / numMuestras; };
+            if (Alcohol > 0) { Alcohol = Alcohol / numMuestras; };
+            if (CO2 > 0) { CO2 = CO2 / numMuestras; };
+            if (TVOC > 0) { TVOC = TVOC / numMuestras; };
+            if (NH4 > 0) { NH4 = NH4 / numMuestras; };
+
+            promResult.Rows.Add(temp, hum, presAt, Alcohol, CO2, TVOC, NH4);
+
+            if (temp == 0)
+            {
+                pResult.Rows.Add("Alerta en temperatura", "La temperatura promedio es igual a 0ºC", "Verifique la conexion del sensor de temperatura");
+            }
+            else
+            {
+                pResult.Rows.Add("La temperatura promedio es: " + temp.ToString() + " ºC", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (hum == 0)
+            {
+                pResult.Rows.Add("Alerta en humedad", "La humedad promedio es igual a 0%", "Verifique la conexion del sensor de humedad");
+            }
+            else
+            {
+                pResult.Rows.Add("La humedad promedio es: " + hum.ToString() + " %", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (presAt == 0)
+            {
+                pResult.Rows.Add("Alerta en presion atmosferica", "La presion atmosferica promedio es igual a 0mB", "Verifique la conexion del sensor de de presion atmosferica");
+            }
+            else
+            {
+                pResult.Rows.Add("La presion atmosferica promedio es: " + presAt.ToString() + " mB", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (Alcohol == 0)
+            {
+                pResult.Rows.Add("Alerta en Alcohol", "Los niveles de Alcohol promedio es igual a 0ppb", "Verifique la conexion del sensor de temperatura");
+            }
+            else
+            {
+                pResult.Rows.Add("Los niveles de Alcohol promedio es: " + Alcohol.ToString() + " ppb", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (CO2 == 0)
+            {
+                pResult.Rows.Add("Alerta en CO2", "Los niveles de CO2 promedio es igual a 0", "Verifique la conexion del sensor de CO2");
+            }
+            else
+            {
+                pResult.Rows.Add("Los niveles promedio de CO2 es: " + CO2.ToString() + " ppb", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (TVOC == 0)
+            {
+                pResult.Rows.Add("Alerta en TVOC", "Los niveles de TVOC promedio es igual a 0", "Verifique la conexion del sensor de TVOC");
+            }
+            else
+            {
+                pResult.Rows.Add("Los niveles de TVOC promedio es: " + TVOC.ToString() + " ppb", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
+            if (NH4 == 0)
+            {
+                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0", "Verifique la conexion del sensor de gas metano");
+            }
+            else
+            {
+                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales" , "");
+            }
+
+            this.GVProms.Visible = true;
+
+            GVProms.DataSource = promResult;
+
+            GVProms.DataBind();
+
+            this.GVResults.Visible = true;
+
+            GVResults.DataSource = pResult;
+
+            GVResults.DataBind();
         }
 
         protected void txtDate_TextChanged(object sender, EventArgs e)

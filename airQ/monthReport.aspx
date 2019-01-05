@@ -18,11 +18,37 @@
         <asp:Button Text="Calcular" CssClass="btn btn-success" ID="btnCalcular" OnClick ="btnCalcular_Click" runat="server" />
 		<br />
 		<br />
+
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h3>Resultados y recomendaciones</h3>
+                </div>
+                <div>
+                    <asp:GridView ID="GVResults" runat="server"></asp:GridView>
+                </div>
+            </div>
+        </div>
+
+		<div class="container">
+            <div class="row">
+                <div>
+                    <h3>Valores promedio de las mediciones</h3>
+                </div>
+                <div>
+                    <asp:GridView ID="GVProms" runat="server"></asp:GridView>
+                </div>
+            </div>
+        </div>
+
 		<div class="container">
 	<div class="row">
+        <div>
+            <h3>Valores grabados en nuestros servidores</h3>
+        </div>
 		<div class="col-md-12">
 			<div class="alert info">
-				<div style="margin-left:25%">
+				<div style="margin-left:0%">
 					<asp:GridView runat="server" ID="gvReport" DataSourceID="dsDevices"
 						EmptyDataText="No tienes registros actualmente!" AllowPaging="True" 
 						AllowSorting="True" PageSize="20" BackColor="White" BorderColor="#DEDFDE" 
@@ -77,6 +103,14 @@
             document.querySelectorAll("[ID*=gvReport]")[0].classList.add("table");
             document.querySelectorAll("[ID*=gvReport]")[0].classList.add("table-striped");
             document.querySelectorAll("[ID*=gvReport]")[0].classList.add("custab");
+
+            document.querySelectorAll("[ID*=GVProms]")[0].classList.add("table");
+            document.querySelectorAll("[ID*=GVProms]")[0].classList.add("table-striped");
+            document.querySelectorAll("[ID*=GVProms]")[0].classList.add("custab");
+
+            document.querySelectorAll("[ID*=GVResults]")[0].classList.add("table");
+            document.querySelectorAll("[ID*=GVResults]")[0].classList.add("table-striped");
+            document.querySelectorAll("[ID*=GVResults]")[0].classList.add("custab");
         }
         catch (err) {}
     </script>
