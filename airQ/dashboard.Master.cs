@@ -67,13 +67,13 @@ namespace airQ
                     {
                         if (dr.HasRows)
                         {
-                            var temperatura = dr["presionAtmosferica"].ToString();
-                            var humedad = dr["presionAtmosferica"].ToString();
+                            var temperatura = dr["Temperatura"].ToString();
+                            var humedad = dr["Humedad"].ToString();
                             var presionAtmosferica = dr["presionAtmosferica"].ToString();
-                            var Alcohol = dr["presionAtmosferica"].ToString();
-                            var TVOC = dr["presionAtmosferica"].ToString();
-                            var CO2 = dr["presionAtmosferica"].ToString();
-                            var NH4 = dr["presionAtmosferica"].ToString();
+                            var Alcohol = dr["Alcohol"].ToString();
+                            var TVOC = dr["TVOC"].ToString();
+                            var CO2 = dr["CO2"].ToString();
+                            var NH4 = dr["NH4"].ToString();
 
                             var tempDouble = onmotica.string2Double(temperatura);
                             var humDouble = onmotica.string2Double(humedad);

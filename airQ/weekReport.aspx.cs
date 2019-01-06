@@ -170,7 +170,7 @@ namespace airQ
             }
             if (NH4 == 0)
             {
-                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas metano");
+                pResult.Rows.Add("Alerta en gas NH4", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas NH4");
             }
             else
             {
