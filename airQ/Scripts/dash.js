@@ -145,7 +145,7 @@ function gauge4() {
 function gauge5() {
     data5 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Gas Metano', Metano]
+        ['Gas NH4', Metano]
     ]);
 
     options5 = {

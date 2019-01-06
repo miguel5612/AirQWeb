@@ -50,10 +50,10 @@
         </div>        
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
-               <h3>Gas Metano</h3>
+               <h3>NH4</h3>
                 <p>Partes por millon</p>
                     <div id="chart-divGasMetano" style="margin-left:10rem; width: 400px; height: 120px;"></div>
-                    <a href="https://www.olimex.com/Products/Components/Sensors/SNS-MQ135/resources/SNS-MQ135.pdf" class="btn btn-outline-light">Mas informacion</a>
+                    <a href="http://www.galenusrevista.com/?Amoniaco-NH3-y-amonio-NH4" class="btn btn-outline-light">Mas informacion</a>
             </div>
         </div>
         <div class="col-sm-4 py-2">

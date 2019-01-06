@@ -163,11 +163,11 @@ namespace airQ
             }
             if (NH4 == 0)
             {
-                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas metano");
+                pResult.Rows.Add("Alerta en gas NH4", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas NH4");
             }
             else
             {
-                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+                pResult.Rows.Add("Los niveles de Gas NH4 promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
             }
 
             this.GVProms.Visible = true;

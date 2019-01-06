@@ -8,7 +8,7 @@
 	</asp:ScriptManager>
 	<br />    
             <h3>Reporte diario (<%: Session["day"].ToString() + "-" + Session["month"].ToString() + "-" + Session["year"].ToString() %>) </h3>
-            <p>En este reporte se muestran los registros apartir de la fecha seleccionada hasta final de mes.</p>
+            <p>En este reporte se muestran los registros del dia seleccionado.</p>
 	<br />
 	<div>        
 		<asp:TextBox ID="txtDate" runat="server" AutoPostBack="True" OnTextChanged="txtDate_TextChanged"></asp:TextBox>

@@ -174,7 +174,7 @@ namespace airQ
             }
             else
             {
-                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+                pResult.Rows.Add("Los niveles de Gas NH4 promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
             }
 
             this.GVProms.Visible = true;

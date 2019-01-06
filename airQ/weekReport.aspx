@@ -8,7 +8,7 @@
 	</asp:ScriptManager>
 	<br />    
             <h3>Reporte semanal (<%: Session["day"].ToString() + "-" + Session["month"].ToString() + "-" + Session["year"].ToString() %>  / <%: DateTime.Parse(Session["day"].ToString() + "/" +  Session["month"].ToString()  + "/" + Session["year"].ToString()).AddDays(7).ToString("dd-MM-yyyy") %>) </h3>
-            <p>En este reporte se muestran los registros apartir de la fecha seleccionada hasta final de mes.</p>
+            <p>En este reporte se muestran los registros apartir de la fecha seleccionada hasta 7 dias.</p>
 	<br />
 	<div>        
 		<asp:TextBox ID="txtDate" runat="server" AutoPostBack="True" OnTextChanged="txtDate_TextChanged"></asp:TextBox>
