@@ -80,9 +80,11 @@ namespace airQ.App_Code
                 data += ",";
                 data += Convert.ToDouble(jsonMesssage.D7).ToString(nfi); //Gas metano - Motor 5
                 data += ",";
-                data += Convert.ToDouble(jsonMesssage.D8).ToString(nfi); //Latitud - Corriente
+                data += Convert.ToDouble(jsonMesssage.D8).ToString(nfi); //NH4 - 
                 data += ",";
-                data += Convert.ToDouble(jsonMesssage.D9).ToString(nfi); //Longitud - Voltaje
+                data += Convert.ToDouble(jsonMesssage.D9).ToString(nfi); //Latitud - Corriente
+                data += ",";
+                data += Convert.ToDouble(jsonMesssage.D10).ToString(nfi); //Longitud - Voltaje
 
                 if (topic.Contains("dron"))
                 {
@@ -91,7 +93,7 @@ namespace airQ.App_Code
 
                     //airQ
 
-                    var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [NH4], [Latitud], [Longitud], [fecha]";
+                    var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [Metano], [NH4], [Latitud], [Longitud], [fecha]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);
                     var otherValues = data;
                     pSQL = pSQL.Replace("@otherValues", otherValues);
