@@ -97,7 +97,7 @@ namespace airQ.App_Code
                     pSQL = pSQL.Replace("@otherValues", otherValues);
 
                     pSQL = pSQL.Replace("@data", data);
-                    executeSQLAirQ(pSQL);
+                    //executeSQLAirQ(pSQL);
 
                 }
                 else if (topic.Contains("printer"))
@@ -114,7 +114,7 @@ namespace airQ.App_Code
                     pSQL = pSQL.Replace("@otherValues", otherValues);
 
                     pSQL = pSQL.Replace("@data", data);
-                    executeSQLMonitor3D(pSQL);
+                    //executeSQLMonitor3D(pSQL);
                 }
             }
             catch (Exception err)
