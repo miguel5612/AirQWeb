@@ -61,9 +61,6 @@ namespace airQ
             client.Connect(clientId);
 
             String inTopic = Session["inTopic"].ToString();
-            String unSubscribeTopics = Session["unSubscribeTopics"].ToString();
-
-            client.Unsubscribe(new string[] { unSubscribeTopics });
             client.Subscribe(new String[] { inTopic  }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
 
