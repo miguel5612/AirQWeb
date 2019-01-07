@@ -83,7 +83,7 @@ namespace airQ.App_Code
                 dynamic jsonMesssage = JsonConvert.DeserializeObject(msg);
                 var data = "";
                 pSQL = pSQL.Replace("@topic", topic);
-                pSQL = pSQL.Replace("@registerAt", "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')");
+                pSQL = pSQL.Replace("@registerAt", "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')");
                 pSQL = pSQL.Replace("@activ", "1");
 
                 data += Convert.ToDouble(jsonMesssage.D1).ToString(nfi);//temperatura - Cama caliente
@@ -123,7 +123,7 @@ namespace airQ.App_Code
                         DateTime dt = new DateTime(year, Month, day);
                         data += dt.ToString(); //Fecha
                     }
-                    else data += DateTime.Now.ToString();
+                    else data += DateNow().ToString();
 
                     //airQ
 
@@ -131,7 +131,7 @@ namespace airQ.App_Code
                     pSQL = pSQL.Replace("@otherFields", otherFields);
 
                     data2InserSQL += ",";
-                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')";
+                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')";
                     var otherValues = data2InserSQL;
                     pSQL = pSQL.Replace("@otherValues", otherValues);
 
@@ -146,13 +146,13 @@ namespace airQ.App_Code
                     data += jsonMesssage.D10; // Potencia electrica
 
                     data += ",";
-                    data += convertD2SQLDate(DateTime.Now); //Fecha
+                    data += convertD2SQLDate(DateNow()); //Fecha
                     //3DPrinterSupervisionSys
                     var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica], [Fecha]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);
 
                     data2InserSQL += ",";
-                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')";
+                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')";
                     var otherValues = data2InserSQL;
                     pSQL = pSQL.Replace("@otherValues", otherValues);
 
@@ -267,6 +267,13 @@ namespace airQ.App_Code
             object scalar = myCmd.ExecuteScalar();
             myConn.Close();
             return scalar;
+        }
+        public static DateTime DateNow()
+        {
+            DateTime utcTime = DateTime.UtcNow;
+            TimeZoneInfo myZone = TimeZoneInfo.CreateCustomTimeZone("COLOMBIA", new TimeSpan(-5, 0, 0), "Colombia", "Colombia");
+            DateTime custDateTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, myZone);
+            return custDateTime;
         }
         public static string convertD2SQLDate(DateTime dt)
         {
