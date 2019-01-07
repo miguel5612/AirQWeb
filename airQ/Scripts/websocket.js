@@ -8,6 +8,7 @@ $(function () {
     hub.client.updateInfo = function (data, inTopic) {
         document.querySelectorAll("[ID*=txtReceived]")[0].value = data;
         temp, hum, presAt, alcoholPPM, TVOC, CO2, Metano;
+        console.log("Topic: ", inTopic, "savedTopic: ", String(document.querySelectorAll("[ID*=txtData9]")[0].value), String(document.querySelectorAll("[ID*=txtData9]")[0].value) == inTopic);
         if (String(document.querySelectorAll("[ID*=txtData9]")[0].value) == inTopic) {
             try {
                 mensaje = JSON.parse(data);
