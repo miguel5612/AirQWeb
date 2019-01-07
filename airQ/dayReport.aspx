@@ -87,8 +87,12 @@
 							<asp:BoundField DataField="CO2" HeaderText="CO2" 
 								SortExpression="CO2" >
 							<HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
+
+							<asp:BoundField DataField="Metano" HeaderText="Metano" 
+								SortExpression="Metano" >
+							<HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
                             							
-							<asp:BoundField DataField="NH4" HeaderText="Metano" 
+							<asp:BoundField DataField="NH4" HeaderText="NH4" 
 								SortExpression="NH4" >
 							<HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
 						</Columns>
