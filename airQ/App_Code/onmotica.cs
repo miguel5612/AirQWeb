@@ -83,7 +83,7 @@ namespace airQ.App_Code
                 dynamic jsonMesssage = JsonConvert.DeserializeObject(msg);
                 var data = "";
                 pSQL = pSQL.Replace("@topic", topic);
-                pSQL = pSQL.Replace("@registerAt", "'" + convertD2IDateTime(DateTime.Now) + "'");
+                pSQL = pSQL.Replace("@registerAt", "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')");
                 pSQL = pSQL.Replace("@activ", "1");
 
                 data += Convert.ToDouble(jsonMesssage.D1).ToString(nfi);//temperatura - Cama caliente
@@ -106,19 +106,35 @@ namespace airQ.App_Code
                 data += ",";
                 data += Convert.ToDouble(jsonMesssage.D10).ToString(nfi); //Longitud - Voltaje
 
+                var data2InserSQL = data; //Copio la data para insertar la fecha en el formato que deseo
                 if (topic.Contains("dron"))
                 {
                     data += ",";
-                    string fecha = jsonMesssage.D10;
-                    if (Int32.Parse(fecha) > 0) data += "'" + DateTime.Parse(fecha) + "'"; //Fecha
-                    else data += "'" + convertD2IDate(DateTime.Now) + "'";
+                    string fecha = jsonMesssage.D11;
+                    if (Int32.Parse(fecha) > 0)
+                    {
+                        var length = fecha.Length; // 5 70119 2 3
+                        var daylen = 0;
+                        if (length > 5) daylen = 2; 
+                        else daylen = 1;
+                        var year = Convert.ToInt32(fecha.Substring(length - 2, 2));
+                        var Month = Convert.ToInt32(fecha.Substring(length - 4, 2));
+                        var day = Convert.ToInt32(fecha.Substring(length - 5, daylen));
+                        DateTime dt = new DateTime(year, Month, day);
+                        data += dt.ToString(); //Fecha
+                    }
+                    else data += DateTime.Now.ToString();
 
                     //airQ
 
                     var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [Metano], [NH4], [Latitud], [Longitud], [fecha]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);
-                    var otherValues = data;
+
+                    data2InserSQL += ",";
+                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')";
+                    var otherValues = data2InserSQL;
                     pSQL = pSQL.Replace("@otherValues", otherValues);
+
 
                     pSQL = pSQL.Replace("@data", data);
                     executeSQLAirQ(pSQL);
@@ -130,12 +146,16 @@ namespace airQ.App_Code
                     data += jsonMesssage.D10; // Potencia electrica
 
                     data += ",";
-                    data += "'" + convertD2IDateTime(DateTime.Now) + "'"; //Fecha
+                    data += convertD2SQLDate(DateTime.Now); //Fecha
                     //3DPrinterSupervisionSys
                     var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica], [Fecha]";
                     pSQL = pSQL.Replace("@otherFields", otherFields);
-                    var otherValues = data;
+
+                    data2InserSQL += ",";
+                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateTime.Now) + "')";
+                    var otherValues = data2InserSQL;
                     pSQL = pSQL.Replace("@otherValues", otherValues);
+
 
                     pSQL = pSQL.Replace("@data", data);
                     executeSQLMonitor3D(pSQL);
@@ -247,6 +267,10 @@ namespace airQ.App_Code
             object scalar = myCmd.ExecuteScalar();
             myConn.Close();
             return scalar;
+        }
+        public static string convertD2SQLDate(DateTime dt)
+        {
+            return dt.ToString("yyyy/MM/ddThh:mm:ss", CultureInfo.InvariantCulture);
         }
         public static string convertD2IDate(DateTime datum)
         {

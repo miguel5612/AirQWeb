@@ -34,7 +34,7 @@
             <div class="card h-100 border-primary">
                 <div class="card-body">
                     <h3>Metano - Alcohol</h3>
-                    <p>Partes por millon</p>
+                    <p>Partes por millon / Partes por millon</p>
                     <div id="chart-divAlcoholes" style="margin-left:10rem; width: 400px; height: 120px;"></div>
                     <a href="https://www.sparkfun.com/datasheets/Sensors/Biometric/MQ-4.pdf" class="btn btn-outline-light">Mas informacion</a>
                 </div>
@@ -43,7 +43,7 @@
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
                <h3>TVOC/CO2</h3>
-                <p>Partes por millon / Partes por billon</p>
+                <p>Partes por billon / Partes por millon</p>
                     <div id="chart-divTVOCCO2" style="width: 400px; height: 120px;"></div>
                     <a href="https://learn.sparkfun.com/tutorials/ccs811-air-quality-breakout-hookup-guide/all" class="btn btn-outline-light">Mas informacion</a>
             </div>
