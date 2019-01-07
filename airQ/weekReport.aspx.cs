@@ -148,7 +148,7 @@ namespace airQ
             }
             if (Alcohol == 0)
             {
-                pResult.Rows.Add("Alerta en Alcohol", "Los niveles de Alcohol promedio es igual a 0ppb", "Verifique la conexion del sensor de temperatura");
+                pResult.Rows.Add("Alerta en Alcohol", "Los niveles de Alcohol promedio es igual a 0ppb", "Verifique la conexion del sensor de Alcohol");
             }
             else
             {
