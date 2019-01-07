@@ -58,7 +58,7 @@ namespace airQ
 			}
             if(Session["deviceID"] != null)
             {
-                txtData8.Value = Session["inTopic"].ToString(); // inTopic
+                txtData9.Value = Session["inTopic"].ToString(); // inTopic
                 if (Int32.Parse(Session["deviceID"].ToString()) > 0)
                 {
                     String pSQL = "SELECT TOP (1) *  FROM  measurements WHERE activ = 1 AND topic = '" + Session["inTopic"].ToString() + "' ORDER BY registerAt DESC";

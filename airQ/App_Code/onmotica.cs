@@ -58,6 +58,19 @@ namespace airQ.App_Code
                 return 0;
             }
         }
+        public static double NZDBNum(string pIn)
+        {
+            if(pIn == null)
+            {
+                return 0;
+            }
+            else
+            {
+                return string2Double(pIn);
+            }
+
+        }
+
         public static void saveIntoDB(string msg, string topic)
         {
             NumberFormatInfo nfi = new NumberFormatInfo();

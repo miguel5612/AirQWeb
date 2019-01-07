@@ -98,14 +98,14 @@ namespace airQ
             {
                 if (dr.HasRows)
                 {
-                    temp += onmotica.string2Double(dr["Temperatura"].ToString());
-                    hum += onmotica.string2Double(dr["Humedad"].ToString());
-                    presAt += onmotica.string2Double(dr["PresionAtmosferica"].ToString());
-                    Alcohol += onmotica.string2Double(dr["Alcohol"].ToString());
-                    CO2 += onmotica.string2Double(dr["TVOC"].ToString());
-                    TVOC += onmotica.string2Double(dr["CO2"].ToString());
-                    Metano += onmotica.string2Double(dr["Metano"].ToString());
-                    NH4 += onmotica.string2Double(dr["NH4"].ToString());
+                    temp += onmotica.NZDBNum(dr["Temperatura"].ToString());
+                    hum += onmotica.NZDBNum(dr["Humedad"].ToString());
+                    presAt += onmotica.NZDBNum(dr["PresionAtmosferica"].ToString());
+                    Alcohol += onmotica.NZDBNum(dr["Alcohol"].ToString());
+                    CO2 += onmotica.NZDBNum(dr["TVOC"].ToString());
+                    TVOC += onmotica.NZDBNum(dr["CO2"].ToString());
+                    Metano += onmotica.NZDBNum(dr["Metano"].ToString());
+                    NH4 += onmotica.NZDBNum(dr["NH4"].ToString());
                     numMuestras++;
                 }
 
@@ -120,7 +120,7 @@ namespace airQ
             if (Metano > 0) { Metano = Metano / numMuestras; };
             if (NH4 > 0) { NH4 = NH4 / numMuestras; };
 
-            promResult.Rows.Add(temp, hum, presAt, Alcohol, CO2, TVOC, NH4);
+            promResult.Rows.Add(temp, hum, presAt, Alcohol, CO2, TVOC, Metano, NH4);
 
             if (temp == 0)
             {
