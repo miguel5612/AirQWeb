@@ -72,7 +72,7 @@ namespace airQ
 
             var campoFecha = DateTime.Parse(dateString); //Fecha de inicio
             var fechaFin = campoFecha.AddDays(7);
-            var pSQL = "SELECT temperatura,humedad,presionAtmosferica,Alcohol,TVOC,CO2,NH4 FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(campoFecha) + "' AND registerAt < '" + onmotica.convertD2IDate(fechaFin) + "'";
+            var pSQL = "SELECT temperatura, humedad, presionAtmosferica, Alcohol, TVOC, CO2, NH4, Metano FROM measurements WHERE registerAt >= '" + onmotica.convertD2IDate(campoFecha) + "' AND registerAt < '" + onmotica.convertD2IDate(fechaFin) + "'";
             SqlDataReader dr = onmotica.fetchReader(pSQL);
 
             DataTable pResult = new DataTable();
@@ -89,6 +89,7 @@ namespace airQ
             promResult.Columns.Add("Alcohol", typeof(Double));
             promResult.Columns.Add("TVOC", typeof(Double));
             promResult.Columns.Add("CO2", typeof(Double));
+            promResult.Columns.Add("Metano", typeof(Double));
             promResult.Columns.Add("NH4", typeof(Double));
 
             double temp = 0, hum = 0, presAt = 0, Alcohol = 0, CO2 = 0, TVOC = 0, Metano = 0, NH4 = 0;

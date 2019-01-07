@@ -83,7 +83,7 @@ namespace airQ.App_Code
                 dynamic jsonMesssage = JsonConvert.DeserializeObject(msg);
                 var data = "";
                 pSQL = pSQL.Replace("@topic", topic);
-                pSQL = pSQL.Replace("@registerAt", "GETDATE()");
+                pSQL = pSQL.Replace("@registerAt", "'" + convertD2IDateTime(DateTime.Now) + "'");
                 pSQL = pSQL.Replace("@activ", "1");
 
                 data += Convert.ToDouble(jsonMesssage.D1).ToString(nfi);//temperatura - Cama caliente
@@ -109,7 +109,9 @@ namespace airQ.App_Code
                 if (topic.Contains("dron"))
                 {
                     data += ",";
-                    data += jsonMesssage.D10 ; //Fecha
+                    string fecha = jsonMesssage.D10;
+                    if (Int32.Parse(fecha) > 0) data += "'" + DateTime.Parse(fecha) + "'"; //Fecha
+                    else data += "'" + convertD2IDate(DateTime.Now) + "'";
 
                     //airQ
 
