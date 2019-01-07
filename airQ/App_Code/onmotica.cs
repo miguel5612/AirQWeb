@@ -49,7 +49,14 @@ namespace airQ.App_Code
         }
         public static Double string2Double(string numero)
         {
-            return Convert.ToDouble(numero.Replace(".", ","));
+            if (numero != "")
+            {
+                return Convert.ToDouble(numero.Replace(".", ","));
+            }
+            else
+            {
+                return 0;
+            }
         }
         public static void saveIntoDB(string msg, string topic)
         {
