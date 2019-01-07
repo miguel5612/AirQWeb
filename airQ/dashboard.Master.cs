@@ -93,7 +93,7 @@ namespace airQ
                             txtData5.Value = TVOCDouble <= 0 ? "0" : TVOC;
                             txtData6.Value = CO2Double <= 0 ? "0" : CO2;
                             txtData7.Value = NH4Double <= 0 ? "0" : NH4;
-                            txtData9.Value = MetanoDouble <= 0 ? "0" : MetanoDouble;
+                            txtData9.Value = MetanoDouble <= 0 ? "0" : Metano;
                         }
                     }
                 }
