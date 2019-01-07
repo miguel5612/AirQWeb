@@ -58,7 +58,7 @@
 							<asp:BoundField DataField="dataId" HeaderText="Numero identificador" InsertVisible="False" 
 								ReadOnly="True" SortExpression="deviceID" Visible="False" />
 							<asp:HyperLinkField HeaderText="Geo-Referencia" Text="ver ubicacion en el mapa" DataNavigateUrlFields="latitud,longitud" 
-								DataNavigateUrlFormatString="https://www.google.com/maps/@{0},{1},4.23z" />       
+								DataNavigateUrlFormatString="https://www.google.com/maps/@{0},{1},20z" />       
                              <asp:boundfield HeaderText="Fecha de toma de la muestra" datafield="registerAt" htmlencode="false" />
 							<asp:BoundField DataField="topic" HeaderText="Topico de entrada" 
 								SortExpression="topic" >
