@@ -121,7 +121,7 @@ namespace airQ.App_Code
                         var Month = Convert.ToInt32(fecha.Substring(length - 4, 2));
                         var day = Convert.ToInt32(fecha.Substring(length - 5, daylen));
                         DateTime dt = new DateTime(year, Month, day);
-                        data += dt.ToString(); //Fecha
+                        data += dt.Date.ToString(); //Fecha
                     }
                     else data += DateNow().ToString();
 
