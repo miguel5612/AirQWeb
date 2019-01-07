@@ -96,7 +96,7 @@ namespace airQ
             promResult.Columns.Add("CO2", typeof(Double));
             promResult.Columns.Add("NH4", typeof(Double));
 
-            double temp = 0, hum = 0, presAt = 0, Alcohol = 0, CO2 = 0, TVOC = 0, NH4 = 0;
+            double temp = 0, hum = 0, presAt = 0, Alcohol = 0, CO2 = 0, TVOC = 0, Metano = 0, NH4 = 0;
             int numMuestras = 0;
 
             while (dr.Read())
@@ -109,6 +109,7 @@ namespace airQ
                     Alcohol += onmotica.string2Double(dr["Alcohol"].ToString());
                     CO2 += onmotica.string2Double(dr["TVOC"].ToString());
                     TVOC += onmotica.string2Double(dr["CO2"].ToString());
+                    Metano += onmotica.string2Double(dr["Metano"].ToString());
                     NH4 += onmotica.string2Double(dr["NH4"].ToString());
                     numMuestras++;
                 }
@@ -121,6 +122,7 @@ namespace airQ
             if (Alcohol > 0) { Alcohol = Alcohol / numMuestras; };
             if (CO2 > 0) { CO2 = CO2 / numMuestras; };
             if (TVOC > 0) { TVOC = TVOC / numMuestras; };
+            if (Metano > 0) { Metano = Metano / numMuestras; };
             if (NH4 > 0) { NH4 = NH4 / numMuestras; };
 
             promResult.Rows.Add(temp, hum, presAt, Alcohol, CO2, TVOC, NH4);
@@ -181,7 +183,14 @@ namespace airQ
             {
                 pResult.Rows.Add("Los niveles de Gas NH4 promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
             }
-
+            if (Metano == 0)
+            {
+                pResult.Rows.Add("Alerta en gas Metano", "Los niveles promedio es igual a 0 ppm", "Verifique la conexion del sensor de gas Metano");
+            }
+            else
+            {
+                pResult.Rows.Add("Los niveles de Gas Metano promedio es: " + NH4.ToString() + " ppm", "Este valor se obtuvo promediando " + numMuestras.ToString() + " Mediciones individuales", "");
+            }
             this.GVProms.Visible = true;
 
             GVProms.DataSource = promResult;
