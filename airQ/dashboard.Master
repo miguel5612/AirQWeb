@@ -44,6 +44,7 @@
         <asp:HiddenField  ID="txtData6" Value="0" runat="server"></asp:HiddenField>
         <asp:HiddenField  ID="txtData7" Value="0" runat="server"></asp:HiddenField>
         <asp:HiddenField  ID="txtData8" Value="0" runat="server"></asp:HiddenField>
+        <asp:HiddenField  ID="txtData9" Value="0" runat="server"></asp:HiddenField>
          <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

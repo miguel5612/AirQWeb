@@ -74,6 +74,7 @@ namespace airQ
                             var TVOC = dr["TVOC"].ToString();
                             var CO2 = dr["CO2"].ToString();
                             var NH4 = dr["NH4"].ToString();
+                            var Metano = dr["Metano"].ToString();
 
                             var tempDouble = onmotica.string2Double(temperatura);
                             var humDouble = onmotica.string2Double(humedad);
@@ -82,8 +83,9 @@ namespace airQ
                             var TVOCDouble = onmotica.string2Double(TVOC);
                             var CO2Double = onmotica.string2Double(CO2);
                             var NH4Double = onmotica.string2Double(NH4);
+                            var MetanoDouble = onmotica.string2Double(Metano);
 
-                            
+
                             txtData1.Value = tempDouble <= 0 ? "0" : temperatura;
                             txtData2.Value = humDouble <= 0 ? "0" : humedad;
                             txtData3.Value = PresAtDouble <= 0 ? "0" : presionAtmosferica;
@@ -91,6 +93,7 @@ namespace airQ
                             txtData5.Value = TVOCDouble <= 0 ? "0" : TVOC;
                             txtData6.Value = CO2Double <= 0 ? "0" : CO2;
                             txtData7.Value = NH4Double <= 0 ? "0" : NH4;
+                            txtData9.Value = MetanoDouble <= 0 ? "0" : MetanoDouble;
                         }
                     }
                 }

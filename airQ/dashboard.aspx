@@ -33,7 +33,7 @@
         <div class="col-sm-4 py-2">
             <div class="card h-100 border-primary">
                 <div class="card-body">
-                    <h3>Alcoholes</h3>
+                    <h3>Metano - Alcohol</h3>
                     <p>Partes por millon</p>
                     <div id="chart-divAlcoholes" style="margin-left:10rem; width: 400px; height: 120px;"></div>
                     <a href="https://www.sparkfun.com/datasheets/Sensors/Biometric/MQ-4.pdf" class="btn btn-outline-light">Mas informacion</a>
