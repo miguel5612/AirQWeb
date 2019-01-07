@@ -117,7 +117,7 @@ namespace airQ.App_Code
                         var daylen = 0;
                         if (length > 5) daylen = 2; 
                         else daylen = 1;
-                        var year = Convert.ToInt32(fecha.Substring(length - 2, 2));
+                        var year = Convert.ToInt32(fecha.Substring(length - 2, 2)) + 2000;
                         var Month = Convert.ToInt32(fecha.Substring(length - 4, 2));
                         var day = Convert.ToInt32(fecha.Substring(length - 5, daylen));
                         DateTime dt = new DateTime(year, Month, day);
