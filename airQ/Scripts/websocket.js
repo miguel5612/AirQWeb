@@ -19,6 +19,7 @@ $(function () {
                 TVOC = mensaje.D5;
                 CO2 = mensaje.D6;
                 Metano = mensaje.D7;
+                NH4 = mensaje.D8;
             }
             catch (err) {
                 console.log("Lecture failed: ", err);

@@ -3,7 +3,7 @@
     data3, options3,
     data4, options4,
     data5, options5,
-    temp = 0, hum = 0, presAt = 0, presAtmmHg = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0;
+    temp = 0, hum = 0, presAt = 0, presAtmmHg = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0, NH4 = 0;
 
 function drawCharts() {
     gauge1();
@@ -15,13 +15,14 @@ function drawCharts() {
 
 function preLoadData() {
     temp = parseInt(document.querySelectorAll("[ID*=txtData1]")[0].value),
-        hum = parseInt(document.querySelectorAll("[ID*=txtData2]")[0].value),
-            presAt = parseInt(document.querySelectorAll("[ID*=txtData3]")[0].value),
-                presAtmmHg = parseInt(presAt * 0.75006375541921),
-                    alcoholPPM = parseInt(document.querySelectorAll("[ID*=txtData4]")[0].value),
-                        TVOC = parseInt(document.querySelectorAll("[ID*=txtData5]")[0].value),
-                            CO2 = parseInt(document.querySelectorAll("[ID*=txtData6]")[0].value),
-                                Metano = parseInt(document.querySelectorAll("[ID*=txtData7]")[0].value);
+    hum = parseInt(document.querySelectorAll("[ID*=txtData2]")[0].value),
+    presAt = parseInt(document.querySelectorAll("[ID*=txtData3]")[0].value),
+    presAtmmHg = parseInt(presAt * 0.75006375541921),
+    alcoholPPM = parseInt(document.querySelectorAll("[ID*=txtData4]")[0].value),
+    TVOC = parseInt(document.querySelectorAll("[ID*=txtData5]")[0].value),
+    CO2 = parseInt(document.querySelectorAll("[ID*=txtData6]")[0].value),
+    NH4 = parseInt(document.querySelectorAll("[ID*=txtData7]")[0].value);
+    Metano = parseInt(document.querySelectorAll("[ID*=txtData8]")[0].value);
     console.log("loaded");
 }
 $(document).ready(function () {
@@ -93,7 +94,8 @@ function gauge2() {
 function gauge3() {
     data3 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Alcoholes', alcoholPPM]
+        ['Alcoholes', alcoholPPM],
+        ['Metano', Metano]
     ]);
 
     options3 = {
@@ -145,7 +147,7 @@ function gauge4() {
 function gauge5() {
     data5 = google.visualization.arrayToDataTable([
         ['Label', 'Value'],
-        ['Gas NH4', Metano]
+        ['Gas NH4', NH4]
     ]);
 
     options5 = {
