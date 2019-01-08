@@ -6,6 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="4EOtEm4UDA9x3EZAkt41zt6HJmOwEJHIvJ4PBdXZwlE" />
     <title><%: Page.Title %> - Medicion online acerca de calidad de aire</title>
 
     <asp:PlaceHolder runat="server">

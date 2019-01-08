@@ -5,6 +5,7 @@
 <html>
 <head runat="server">
     <title>airQ-Dashboard</title>
+    <meta name="google-site-verification" content="4EOtEm4UDA9x3EZAkt41zt6HJmOwEJHIvJ4PBdXZwlE" />
     <%--Framework Scripts--%>
     <asp:ScriptReference Name="MsAjaxBundle" />
     <asp:ScriptReference Name="jquery" />
