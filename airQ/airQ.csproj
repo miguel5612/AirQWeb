@@ -60,6 +60,9 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MessagingToolkit.QRCode, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MessagingToolkit.QRCode.1.3.0\lib\MessagingToolkit.QRCode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
     </Reference>
@@ -205,6 +208,7 @@
     <Content Include="external\img\brand\logo.svg" />
     <Content Include="external\img\brand\sygnet.svg" />
     <Content Include="external\img\favicon.ico" />
+    <Content Include="external\img\RespireConTranquilidadMinTic.jpg" />
     <Content Include="external\index.html" />
     <Content Include="external\js\charts.js" />
     <Content Include="external\js\colors.js" />
@@ -252,8 +256,12 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <Content Include="google8b06dfa701e02079.html" />
+    <Content Include="info.aspx" />
     <Content Include="map.aspx" />
     <Content Include="dayReport.aspx" />
+    <Content Include="QR.aspx" />
+    <Content Include="Scripts\html5-qrcode.js" />
     <Content Include="weekReport.aspx" />
     <Content Include="monthReport.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -381,6 +389,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="info.aspx.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="info.aspx.designer.cs">
+      <DependentUpon>info.aspx</DependentUpon>
+    </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -408,6 +423,13 @@
     </Compile>
     <Compile Include="dayReport.aspx.designer.cs">
       <DependentUpon>dayReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QR.aspx.cs">
+      <DependentUpon>QR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QR.aspx.designer.cs">
+      <DependentUpon>QR.aspx</DependentUpon>
     </Compile>
     <Compile Include="weekReport.aspx.cs">
       <DependentUpon>weekReport.aspx</DependentUpon>

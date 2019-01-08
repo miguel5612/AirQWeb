@@ -16,6 +16,12 @@ using System.Text;
 using airQ.Hubs;
 using Microsoft.AspNet.SignalR;
 
+//Qr Generator
+using System.IO;
+using System.Drawing;
+using MessagingToolkit.QRCode.Codec;
+using System.Drawing.Imaging;
+
 namespace airQ
 {
     public partial class dashboard1 : System.Web.UI.Page
@@ -39,6 +45,12 @@ namespace airQ
                 lblTittle.Text = "No tienes dispositivos registrados, haz clic en registrar nuevo dispositivo...";
                 divMeters.Visible = false;
             }
+            var devId = Session["deviceId"].ToString();
+            QRCodeEncoder encoder = new QRCodeEncoder();
+            Bitmap imagen = encoder.Encode("https://airq.dronefenix.a2hosted.com/info?devId=" + devId);
+            MemoryStream ms = new MemoryStream();
+            imagen.Save(ms, ImageFormat.Gif);
+            imgQR.Src = "data:image/gif;base64," + Convert.ToBase64String(ms.ToArray());
 
             mqttConection();
         }
@@ -74,7 +86,7 @@ namespace airQ
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             txtReceived.Text = ReceivedMessage;
             var context = GlobalHost.ConnectionManager.GetHubContext<dashboardHub>();
-
+            
             context.Clients.All.updateInfo(ReceivedMessage, inTopic);
             //Response.Redirect("/dashboard");
         }

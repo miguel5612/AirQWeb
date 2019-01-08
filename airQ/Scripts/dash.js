@@ -5,6 +5,7 @@
     data5, options5,
     temp = 0, hum = 0, presAt = 0, presAtmmHg = 0, alcoholPPM = 0, TVOC = 0, CO2 = 0, Metano = 0, NH4 = 0;
 
+
 function drawCharts() {
     gauge1();
     gauge2();
@@ -12,7 +13,6 @@ function drawCharts() {
     gauge4();
     gauge5();
 }
-
 function preLoadData() {
     temp = parseInt(document.querySelectorAll("[ID*=txtData1]")[0].value),
     hum = parseInt(document.querySelectorAll("[ID*=txtData2]")[0].value),
