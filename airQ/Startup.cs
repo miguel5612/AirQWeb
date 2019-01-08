@@ -23,7 +23,7 @@ namespace airQ
         {
             app.MapSignalR();
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
-            //mqttConection();
+            mqttConection();
         }
         public void mqttConection()
         {
