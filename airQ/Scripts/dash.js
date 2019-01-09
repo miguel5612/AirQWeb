@@ -45,10 +45,10 @@ function gauge1() {
 
     options1 = {
         width: 400, height: 120,
-        redFrom: 70, redTo: 95,
-        yellowFrom: 35, yellowTo: 70,
-        max:95,
-        minorTicks: 5
+        redFrom: 80, redTo: 90,
+        yellowFrom: 70, yellowTo: 80,
+        max:90,
+        minorTicks: 1
     };
 
     chart1 = new google.visualization.Gauge(document.getElementById('chart-divTemperaturaHumedad'));
@@ -75,9 +75,9 @@ function gauge2() {
 
     options2 = {
         width: 400, height: 120,
-        redFrom: 1100, redTo: 1200,
-        yellowFrom: 1000, yellowTo: 1100,
-        max: 1200,
+        redFrom: 8000, redTo: 9000,
+        yellowFrom: 7000, yellowTo: 8000,
+        max: 9000,
         minorTicks: 5
     };
 
@@ -100,9 +100,9 @@ function gauge3() {
 
     options3 = {
         width: 400, height: 120,
-        redFrom: 50, redTo: 100,
-        yellowFrom: 30, yellowTo: 50,
-        max: 100,
+        redFrom: 2500, redTo: 5000,
+        yellowFrom: 2000, yellowTo: 2500,
+        max: 5000,
         minorTicks: 5
     };
 
@@ -125,9 +125,9 @@ function gauge4() {
 
     options4 = {
         width: 400, height: 120,
-        redFrom: 900, redTo: 1000,
-        yellowFrom: 800, yellowTo: 900,
-        max: 1000,
+        redFrom: 1500, redTo: 5000,
+        yellowFrom: 1000, yellowTo: 1500,
+        max: 5000,
         minorTicks: 5
     };
 
@@ -152,9 +152,9 @@ function gauge5() {
 
     options5 = {
         width: 400, height: 120,
-        redFrom: 90, redTo: 100,
-        yellowFrom: 75, yellowTo: 90,
-        max:100,
+        redFrom: 600, redTo: 1000,
+        yellowFrom: 500, yellowTo: 600,
+        max:1000,
         minorTicks: 5
     };
 
