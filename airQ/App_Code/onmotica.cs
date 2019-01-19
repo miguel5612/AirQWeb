@@ -21,6 +21,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using Newtonsoft.Json;
 
+
 namespace airQ.App_Code
 {
     //onmotica is an Miguel Califa creation :) 2018 C
@@ -31,6 +32,23 @@ namespace airQ.App_Code
         public static string getBrokerAddress()
         {
             return "68.183.31.237";
+        }
+        public static string getAppFolder()
+        {
+            string folderPath = "";
+            SqlDataReader dr = fetchReader("SELECT TOP(1) AppFolderPath FROM ServerInfo ORDER BY ServerInfoID DESC");
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    folderPath = dr["AppFolderPath"].ToString();
+                }                
+            }
+            return folderPath;
+        }
+        public static void updateAppFolder(string Path)
+        {
+            executeSQL("UPDATE ServerInfo SET AppFolderPath = '"+ Path + "' WHERE ServerInfoID = 1");
         }
         public static void isLogged(System.Web.SessionState.HttpSessionState Session, HttpResponse Response, String location)
         {
@@ -113,6 +131,10 @@ namespace airQ.App_Code
                     string fecha = jsonMesssage.D11;
                     if (Int32.Parse(fecha) > 0)
                     {
+                        try
+                        {
+
+                        /*
                         var length = fecha.Length; // 5 70119 2 3
                         var daylen = 0;
                         if (length > 5) daylen = 2; 
@@ -122,6 +144,26 @@ namespace airQ.App_Code
                         var day = Convert.ToInt32(fecha.Substring(length - 5, daylen));
                         DateTime dt = new DateTime(year, Month, day);
                         data += dt.Date.ToString(); //Fecha
+                        */
+                        var length = fecha.Length; // 5 70119 2 3
+                        if (length == 5) fecha = "0" + fecha;
+
+                        var year = Convert.ToInt32(fecha.Substring(4, 2)) + 2000;
+                        var Month = Convert.ToInt32(fecha.Substring(2, 2));
+                        var day = Convert.ToInt32(fecha.Substring(0, 2));
+
+                        DateTime dt = new DateTime(year, Month, day);
+                        data += dt.Date.ToShortDateString(); //Fecha
+
+                        }
+                        catch(Exception ex)
+                        {
+                            saveInLogMQTT(ex);
+                        }
+                        finally
+                        {
+                            data += DateNow().ToString();
+                        }
                     }
                     else data += DateNow().ToString();
 
@@ -161,11 +203,37 @@ namespace airQ.App_Code
                     executeSQLMonitor3D(pSQL);
                 }
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
                 //("Error insertando el registro -- ", err);
+                saveInLogMQTT(ex);
             }
             finally
+            {
+            }
+        }
+        public static void saveInLogMQTT(Exception ex)
+        {
+            try
+            {
+                string pathFolder = @getAppFolder();
+                string pathLog = @"Logs";
+                string strFileName = "mosquitto.txt"; 
+
+                string path = string.Format("{0}\\{1}\\{2}", pathFolder, pathLog, strFileName);
+                FileStream objFilestream = new FileStream(path, FileMode.Append, FileAccess.Write);
+            using (StreamWriter sw = new StreamWriter((Stream)objFilestream))
+            {
+                sw.WriteLine("=============Error Logging ===========");
+                sw.WriteLine("===========Start============= " + DateTime.Now);
+                sw.WriteLine("Error Message: " + ex.Message);
+                sw.WriteLine("Stack Trace: " + ex.StackTrace);
+                sw.WriteLine("Path App: " + path);
+                sw.WriteLine("===========End============= " + DateTime.Now);
+
+            }
+            }
+            catch (Exception Err)
             {
 
             }

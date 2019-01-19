@@ -258,10 +258,12 @@
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="google8b06dfa701e02079.html" />
     <Content Include="info.aspx" />
+    <Content Include="Logs\mosquitto.txt" />
     <Content Include="map.aspx" />
     <Content Include="dayReport.aspx" />
     <Content Include="QR.aspx" />
     <Content Include="Scripts\html5-qrcode.js" />
+    <Content Include="setPathLog.aspx" />
     <Content Include="weekReport.aspx" />
     <Content Include="monthReport.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -430,6 +432,13 @@
     </Compile>
     <Compile Include="QR.aspx.designer.cs">
       <DependentUpon>QR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="setPathLog.aspx.cs">
+      <DependentUpon>setPathLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="setPathLog.aspx.designer.cs">
+      <DependentUpon>setPathLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="weekReport.aspx.cs">
       <DependentUpon>weekReport.aspx</DependentUpon>
