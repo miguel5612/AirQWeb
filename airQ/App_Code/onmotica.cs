@@ -206,7 +206,7 @@ namespace airQ.App_Code
             catch (Exception ex)
             {
                 //("Error insertando el registro -- ", err);
-                saveInLogMQTT(ex);
+                saveInLogMQTT(ex, msg);
             }
             finally
             {
@@ -232,6 +232,33 @@ namespace airQ.App_Code
                 sw.WriteLine("===========End============= " + DateTime.Now);
 
             }
+            }
+            catch (Exception Err)
+            {
+
+            }
+        }
+        public static void saveInLogMQTT(Exception ex, String jsonMsg)
+        {
+            try
+            {
+                string pathFolder = @getAppFolder();
+                string pathLog = @"Logs";
+                string strFileName = "mosquitto.txt";
+
+                string path = string.Format("{0}\\{1}\\{2}", pathFolder, pathLog, strFileName);
+                FileStream objFilestream = new FileStream(path, FileMode.Append, FileAccess.Write);
+                using (StreamWriter sw = new StreamWriter((Stream)objFilestream))
+                {
+                    sw.WriteLine("=============Error Logging ===========");
+                    sw.WriteLine("===========Start============= " + DateTime.Now);
+                    sw.WriteLine("Error Message: " + ex.Message);
+                    sw.WriteLine("Stack Trace: " + ex.StackTrace);
+                    sw.WriteLine("Json Msg: " + jsonMsg);
+                    sw.WriteLine("Path App: " + path);
+                    sw.WriteLine("===========End============= " + DateTime.Now);
+
+                }
             }
             catch (Exception Err)
             {
