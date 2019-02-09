@@ -31,7 +31,8 @@ namespace airQ.App_Code
 
         public static string getBrokerAddress()
         {
-            return "68.183.31.237";
+            //return "68.183.31.237"; 157.230.174.83
+            return "157.230.174.83"; 
         }
         public static string getAppFolder()
         {
