@@ -105,6 +105,8 @@ namespace airQ
 
             }
 
+            dr.Close();
+
             if (temp > 0) { temp = temp / numMuestras; };
             if (hum > 0) { hum = hum / numMuestras; };
             if (presAt > 0) { presAt = presAt / numMuestras; };

@@ -55,6 +55,7 @@ namespace airQ
                         AddMenuItem(dr["deviceName"].ToString(), dr["deviceID"].ToString());
 				    }
 			    }
+                dr.Close();
 			}
             if(Session["deviceID"] != null)
             {
@@ -96,6 +97,7 @@ namespace airQ
                             txtData8.Value = MetanoDouble <= 0 ? "0" : Metano;
                         }
                     }
+                    dr.Close();
                 }
             }
 		}

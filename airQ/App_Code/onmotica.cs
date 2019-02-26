@@ -45,6 +45,7 @@ namespace airQ.App_Code
                     folderPath = dr["AppFolderPath"].ToString();
                 }                
             }
+            dr.Close();
             return folderPath;
         }
         public static void updateAppFolder(string Path)
@@ -275,6 +276,24 @@ namespace airQ.App_Code
             cmd.Connection = myConn;
             cmd.ExecuteNonQuery();
             myConn.Close();
+        }
+        public static bool validateTopic(String topic)
+        {
+            var pSQL = "SELECT COUNT(*) as cantidad FROM devices WHERE inTopic LIKE '%" + topic + "%'  OR outTopic LIKE '%" + topic + "%'";
+            SqlDataReader dr = fetchReader(pSQL);
+            while (dr.Read())
+            {
+                if(dr.HasRows)
+                {
+                    return ((int)dr["cantidad"] > 0);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            dr.Close();
+            return false;
         }
         public static void executeSQLMonitor3D(string query)
         {

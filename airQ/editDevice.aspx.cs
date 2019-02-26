@@ -44,6 +44,7 @@ namespace airQ
                         Response.Redirect("/editDevice");
                     }
                 }
+                dr.Close();
             }
             else
             {

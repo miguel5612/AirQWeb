@@ -57,6 +57,7 @@ namespace airQ
                             lblError.Visible = false;
                         }
                     }
+                    dr.Close();
                     if(bandera)
                     {
                         pSQL = "INSERT INTO [users]  ([UserName], [Pass], [RegisterDate], [IsActiv]) VALUES ('@UserName','@Pass','@RegisterDate',@IsActiv)";
@@ -82,6 +83,7 @@ namespace airQ
                     Session["UsrName"] = dr["UserName"].ToString();
                     Response.Redirect("/dashboard");
             }
+            dr.Close();
         }
     }    
 }

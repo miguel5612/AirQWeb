@@ -49,6 +49,7 @@ namespace airQ
                         }
 
                     }
+                    dr.Close();
 
                     pSQL = "SELECT TOP(1)* FROM limits ORDER BY limitId DESC";
 

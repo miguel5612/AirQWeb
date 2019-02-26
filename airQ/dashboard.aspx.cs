@@ -21,6 +21,7 @@ using System.IO;
 using System.Drawing;
 using MessagingToolkit.QRCode.Codec;
 using System.Drawing.Imaging;
+using System.Data.SqlClient;
 
 namespace airQ
 {
@@ -59,34 +60,122 @@ namespace airQ
             MqttClient client;
             string clientId;
 
-            string BrokerAddress = onmotica.getBrokerAddress();
+            String[] mqtt_server = { "test.mosquitto.org", "iot.eclipse.org", "157.230.174.83" };
 
-            client = new MqttClient(BrokerAddress);
+            int numTopic = 1;
+            var pSQL = "SELECT COUNT(*) as total from devices";
+            using (SqlDataReader dr = onmotica.fetchReader(pSQL))
+            {
+                while (dr.Read())
+                {
+                    if (dr.HasRows)
+                    {
+                        numTopic = (int)dr["total"];
+                    }
+                }
+            }
 
-            // register a callback-function (we have to implement, see below) which is called by the library when a message was received
-            client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+            String[] topics = new string[numTopic];
 
-            // use a unique id as client id, each time we start the application
-            clientId = Guid.NewGuid().ToString();
+            var counter = 0;
+            pSQL = "SELECT inTopic from devices";
+            using (SqlDataReader dr = onmotica.fetchReader(pSQL))
+            {
+                while (dr.Read())
+                {
+                    if (dr.HasRows)
+                    {
+                        topics[counter] = dr["inTopic"].ToString();
+                        counter++;
+                    }
+                }
+            }
 
 
-            client.Connect(clientId);
+            try
+            {
 
-            String inTopic = Session["inTopic"].ToString();
-            client.Subscribe(new String[] { inTopic  }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                string BrokerAddress = mqtt_server[0];
+                client = new MqttClient(BrokerAddress);
+                // register a callback-function (we have to implement, see below) which is called by the library when a message was received
+                client.MqttMsgPublishReceived += client_MqttMsgPublishReceived1;
+                // use a unique id as client id, each time we start the application
+                clientId = Guid.NewGuid().ToString();
+                client.Connect(clientId);
+                foreach (string topic in topics)
+                {
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                }
 
+                BrokerAddress = mqtt_server[1];
+                client = new MqttClient(BrokerAddress);
+                // register a callback-function (we have to implement, see below) which is called by the library when a message was received
+                client.MqttMsgPublishReceived += client_MqttMsgPublishReceived2;
+                // use a unique id as client id, each time we start the application
+                clientId = Guid.NewGuid().ToString();
+                client.Connect(clientId);
+                foreach (string topic in topics)
+                {
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                }
 
-        }
+                BrokerAddress = mqtt_server[2];
+                client = new MqttClient(BrokerAddress);
+                // register a callback-function (we have to implement, see below) which is called by the library when a message was received
+                client.MqttMsgPublishReceived += client_MqttMsgPublishReceived2;
+                // use a unique id as client id, each time we start the application
+                clientId = Guid.NewGuid().ToString();
+                client.Connect(clientId);
+                foreach (string topic in topics)
+                {
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                }
+
+            }
+            catch (Exception error)
+            {
+                onmotica.saveInLogMQTT(error);
+            }
+            finally
+            {
+
+            }
+        
+    }
 
 
         // this code runs when a message was received
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            processMsg(e);
+        }
+        void client_MqttMsgPublishReceived1(object sender, MqttMsgPublishEventArgs e)
+        {
+            processMsg(e);
+        }
+
+        void client_MqttMsgPublishReceived2(object sender, MqttMsgPublishEventArgs e)
+        {
+            processMsg(e);
+        }
+
+        void client_MqttMsgPublishReceived3(object sender, MqttMsgPublishEventArgs e)
+        {
+            processMsg(e);
+        }
+        void client_MqttMsgPublishReceived4(object sender, MqttMsgPublishEventArgs e)
+        {
+            processMsg(e);
+        }
+
+
+        void processMsg(MqttMsgPublishEventArgs e)
+        {
             var inTopic = e.Topic;
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
             txtReceived.Text = ReceivedMessage;
             var context = GlobalHost.ConnectionManager.GetHubContext<dashboardHub>();
-            
+
             context.Clients.All.updateInfo(ReceivedMessage, inTopic);
             //Response.Redirect("/dashboard");
         }
