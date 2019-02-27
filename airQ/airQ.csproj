@@ -265,6 +265,7 @@
     <Content Include="QR.aspx" />
     <Content Include="Scripts\html5-qrcode.js" />
     <Content Include="setPathLog.aspx" />
+    <Content Include="Test\TestMail.aspx" />
     <Content Include="weekReport.aspx" />
     <Content Include="monthReport.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -447,6 +448,13 @@
     </Compile>
     <Compile Include="setPathLog.aspx.designer.cs">
       <DependentUpon>setPathLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestMail.aspx.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestMail.aspx.designer.cs">
+      <DependentUpon>TestMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="weekReport.aspx.cs">
       <DependentUpon>weekReport.aspx</DependentUpon>
