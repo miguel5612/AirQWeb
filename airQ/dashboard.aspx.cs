@@ -36,24 +36,32 @@ namespace airQ
         }
         void Page_LoadComplete(object sender, EventArgs e)
         {
-            if (Session["deviceName"] != null & Session["deviceId"] != null)
+            try
             {
-                lblTittle.Text = Session["deviceName" + Session["deviceId"].ToString()].ToString();
-                divMeters.Visible = true;
-            }
-            else
-            {
-                lblTittle.Text = "No tienes dispositivos registrados, haz clic en registrar nuevo dispositivo...";
-                divMeters.Visible = false;
-            }
-            var devId = Session["deviceId"].ToString();
-            QRCodeEncoder encoder = new QRCodeEncoder();
-            Bitmap imagen = encoder.Encode("https://airq.dronefenix.a2hosted.com/info?devId=" + devId);
-            MemoryStream ms = new MemoryStream();
-            imagen.Save(ms, ImageFormat.Gif);
-            imgQR.Src = "data:image/gif;base64," + Convert.ToBase64String(ms.ToArray());
+                if (Session["deviceName"] != null & Session["deviceId"] != null)
+                {
+                    lblTittle.Text = Session["deviceName" + Session["deviceId"].ToString()].ToString();
+                    divMeters.Visible = true;
+                }
+                else
+                {
+                    lblTittle.Text = "No tienes dispositivos registrados, haz clic en registrar nuevo dispositivo...";
+                    divMeters.Visible = false;
+                }
+                var devId = Session["deviceId"].ToString();
+                QRCodeEncoder encoder = new QRCodeEncoder();
+                Bitmap imagen = encoder.Encode("https://airq.dronefenix.a2hosted.com/info?devId=" + devId);
+                MemoryStream ms = new MemoryStream();
+                imagen.Save(ms, ImageFormat.Gif);
+                imgQR.Src = "data:image/gif;base64," + Convert.ToBase64String(ms.ToArray());
 
             mqttConection();
+
+            }
+            catch(Exception err)
+            {
+
+            }
         }
         public void mqttConection()
         {

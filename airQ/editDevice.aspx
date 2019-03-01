@@ -76,7 +76,10 @@
     </script>
 <asp:SqlDataSource runat="server" ID="dsDevices" ConnectionString="<%$ ConnectionStrings:AirQConnectionString %>"
 		ProviderName="<%$ ConnectionStrings:AirQConnectionString.ProviderName %>"
-	SelectCommand="SELECT * FROM devices">
+	SelectCommand="SELECT * FROM devices WHERE deviceUsrId = @UsrID">
+    <selectparameters>
+		<asp:sessionparameter name="UsrID" sessionfield="UsrID" type="Int32" />
+	</selectparameters>
 </asp:SqlDataSource>
 </asp:Content>
 
