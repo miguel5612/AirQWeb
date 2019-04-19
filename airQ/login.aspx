@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <a href="login.aspx">login.aspx</a><script src="Scripts/spin.min.js"></script><script src="Scripts/spinGeneric.js"></script>
+    <script src="Scripts/spin.min.js"></script><script src="Scripts/spinGeneric.js"></script>
     <div>
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
