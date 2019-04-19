@@ -112,7 +112,7 @@ namespace airQ
                 client.Connect(clientId);
                 foreach (string topic in topics)
                 {
-                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
                 }
 
             }
@@ -135,7 +135,7 @@ namespace airQ
                 client.Connect(clientId);
                 foreach (string topic in topics)
                 {
-                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
                 }
             }
             catch (Exception error)
@@ -157,7 +157,7 @@ namespace airQ
                 client.Connect(clientId);
                 foreach (string topic in topics)
                 {
-                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
+                    client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
                 }
 
             }

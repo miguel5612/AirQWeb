@@ -30,7 +30,7 @@ namespace airQ
             MqttClient client;
             string clientId;
 
-            String[] mqtt_server = { "test.mosquitto.org", "iot.eclipse.org", "157.230.174.83" };
+            String[] mqtt_server = { "157.230.174.83", "test.mosquitto.org", "mqtt.fluux.io" };
 
             int numTopic = 1;
             var pSQL = "SELECT COUNT(*) as total from devices";
