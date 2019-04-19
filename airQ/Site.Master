@@ -18,8 +18,8 @@
 
 </head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
+    <form id="formulario1" runat="server">
+        <asp:ScriptManager AsyncPostBackTimeout="36000" runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>

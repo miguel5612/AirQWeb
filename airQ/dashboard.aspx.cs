@@ -99,11 +99,11 @@ namespace airQ
                 }
             }
 
-
+            string BrokerAddress;
             try
             {
 
-                string BrokerAddress = mqtt_server[0];
+                BrokerAddress = mqtt_server[0];
                 client = new MqttClient(BrokerAddress);
                 // register a callback-function (we have to implement, see below) which is called by the library when a message was received
                 client.MqttMsgPublishReceived += client_MqttMsgPublishReceived1;
@@ -115,6 +115,17 @@ namespace airQ
                     client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
                 }
 
+            }
+            catch (Exception error)
+            {
+                onmotica.saveInLogMQTT(error);
+            }
+            finally
+            {
+
+            }
+            try
+            { 
                 BrokerAddress = mqtt_server[1];
                 client = new MqttClient(BrokerAddress);
                 // register a callback-function (we have to implement, see below) which is called by the library when a message was received
@@ -126,7 +137,17 @@ namespace airQ
                 {
                     client.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE });
                 }
+            }
+            catch (Exception error)
+            {
+                onmotica.saveInLogMQTT(error);
+            }
+            finally
+            {
 
+            }
+            try
+            { 
                 BrokerAddress = mqtt_server[2];
                 client = new MqttClient(BrokerAddress);
                 // register a callback-function (we have to implement, see below) which is called by the library when a message was received

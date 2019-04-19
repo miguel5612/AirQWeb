@@ -127,83 +127,34 @@ namespace airQ.App_Code
                 data += Convert.ToDouble(jsonMesssage.D10).ToString(nfi); //Longitud - Voltaje
 
                 var data2InserSQL = data; //Copio la data para insertar la fecha en el formato que deseo
-                if (topic.Contains("dron"))
+                if (topic.Contains("dron")) //Dronefenix
                 {
-                    data += ",";
-                    string fecha = jsonMesssage.D11;
-                    if (Int32.Parse(fecha) > 0)
-                    {
-                        try
-                        {
-
-                        /*
-                        var length = fecha.Length; // 5 70119 2 3
-                        var daylen = 0;
-                        if (length > 5) daylen = 2; 
-                        else daylen = 1;
-                        var year = Convert.ToInt32(fecha.Substring(length - 2, 2)) + 2000;
-                        var Month = Convert.ToInt32(fecha.Substring(length - 4, 2));
-                        var day = Convert.ToInt32(fecha.Substring(length - 5, daylen));
-                        DateTime dt = new DateTime(year, Month, day);
-                        data += dt.Date.ToString(); //Fecha
-                        */
-                        var length = fecha.Length; // 5 70119 2 3
-                        if (length == 5) fecha = "0" + fecha;
-
-                        var year = Convert.ToInt32(fecha.Substring(4, 2)) + 2000;
-                        var Month = Convert.ToInt32(fecha.Substring(2, 2));
-                        var day = Convert.ToInt32(fecha.Substring(0, 2));
-
-                        DateTime dt = new DateTime(year, Month, day);
-                        data += dt.Date.ToShortDateString(); //Fecha
-
-                        }
-                        catch(Exception ex)
-                        {
-                            saveInLogMQTT(ex);
-                        }
-                        finally
-                        {
-                            data += DateNow().ToString();
-                        }
-                    }
-                    else data += DateNow().ToString();
-
-                    //airQ
-
-                    var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [Metano], [NH4], [Latitud], [Longitud], [fecha]";
-                    pSQL = pSQL.Replace("@otherFields", otherFields);
-
-                    data2InserSQL += ",";
-                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')";
-                    var otherValues = data2InserSQL;
-                    pSQL = pSQL.Replace("@otherValues", otherValues);
-
-
-                    pSQL = pSQL.Replace("@data", data);
-                    executeSQLAirQ(pSQL);
-
-                }
-                else if (topic.Contains("printer"))
+                data += ",";
+                string fecha = jsonMesssage.D11;
+                DateTime dtFecha = DateTime.MinValue;
+                DateTime.TryParse(fecha, out dtFecha);
+                if(dtFecha == DateTime.MinValue)
                 {
-                    data += ",";
-                    data += jsonMesssage.D10; // Potencia electrica
-
-                    data += ",";
-                    data += convertD2SQLDate(DateNow()); //Fecha
-                    //3DPrinterSupervisionSys
-                    var otherFields = "[tempHotBed], [TempExt], [M1], [M2], [M3], [M4], [M5], [Corriente], [Voltaje], [PotenciaElectrica], [Fecha]";
-                    pSQL = pSQL.Replace("@otherFields", otherFields);
-
-                    data2InserSQL += ",";
-                    data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')";
-                    var otherValues = data2InserSQL;
-                    pSQL = pSQL.Replace("@otherValues", otherValues);
-
-
-                    pSQL = pSQL.Replace("@data", data);
-                    executeSQLMonitor3D(pSQL);
+                    dtFecha = DateNow();
                 }
+                data += dtFecha.ToShortDateString();
+                     
+
+                //airQ
+
+                var otherFields = "[temperatura], [humedad], [presionAtmosferica], [Alcohol], [TVOC], [CO2], [Metano], [NH4], [Latitud], [Longitud], [fecha]";
+                pSQL = pSQL.Replace("@otherFields", otherFields);
+
+                data2InserSQL += ",";
+                data2InserSQL += "CONVERT(datetime, '" + convertD2IDateTime(DateNow()) + "')";
+                var otherValues = data2InserSQL;
+                pSQL = pSQL.Replace("@otherValues", otherValues);
+
+
+                pSQL = pSQL.Replace("@data", data);
+                executeSQLAirQ(pSQL);
+
+                }               
             }
             catch (Exception ex)
             {

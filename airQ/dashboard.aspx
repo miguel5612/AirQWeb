@@ -4,6 +4,8 @@
 	<script src="Scripts/jquery.signalR-2.4.0.min.js"></script>
 	<script src="signalr/hubs"></script>
 	<script src="Scripts/websocket.js"></script>
+    <a href="dashboard.aspx">dashboard.aspx</a>
+    <script src="Scripts/spinGeneric.js"></script><script src="Scripts/spin.min.js"></script>
 	<style>	    
 	</style>
 </asp:Content>
@@ -78,4 +80,8 @@
 			</div>
 			</ContentTemplate>
 		</asp:UpdatePanel>
+    <script>
+    Sys.WebForms.PageRequestManager.getInstance().add_initializeRequest(InitializeRequest);
+    Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+</script>
 </asp:Content>

@@ -264,6 +264,8 @@
     <Content Include="dayReport.aspx" />
     <Content Include="QR.aspx" />
     <Content Include="Scripts\html5-qrcode.js" />
+    <Content Include="Scripts\spin.min.js" />
+    <Content Include="Scripts\spinGeneric.js" />
     <Content Include="setPathLog.aspx" />
     <Content Include="Test\TestMail.aspx" />
     <Content Include="weekReport.aspx" />
